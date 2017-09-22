@@ -17,7 +17,7 @@ class CreateCategoriasTables extends Migration
             $table->increments('id');
             $table->string('nombre',80)->unique();
             $table->text('descripcion')->nullable();
-            $table->string('estado',80)->default('activa');
+            $table->string('estado',80)->default('activo');
             $table->timestamps();
         });
     }
