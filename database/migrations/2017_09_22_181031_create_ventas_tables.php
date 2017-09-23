@@ -16,6 +16,7 @@ class CreateVentasTables extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo',12)->unique();
+            $table->string('fechaventa');
             $table->text('descripcion');
             $table->string('estado')->default('vendido');
             $table->double('totalventa',8,2);
@@ -31,7 +32,7 @@ class CreateVentasTables extends Migration
             Schema::create('detalle_venta', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('cantidad');
-                $table->string('fechaventa');
+                
                 $table->double('costounitario',8,2);
                 $table->double('costototal',8,2);
                 $table->timestamps();

@@ -16,6 +16,7 @@ class CreateComprasTables extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo',12)->unique();
+            $table->string('fechacompra');
             $table->text('descripcion');
             $table->string('estado')->default('comprado');
             $table->double('totalcompra',8,2);
@@ -31,7 +32,6 @@ class CreateComprasTables extends Migration
             Schema::create('detalle_compra', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('cantidad');
-                $table->string('fechacompra');
                 $table->string('fechavenc');
                 $table->double('costounitario',8,2);
                 $table->double('costototal',8,2);
