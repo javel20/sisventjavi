@@ -3,6 +3,11 @@
 namespace sisventjavi\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Redirect;
+
+//use sisventjavi\Http\Controllers\Controller;
+use sisventjavi\Http\Requests;
+use sisventjavi\Categoria;
 
 class CategoriasController extends Controller
 {
@@ -13,7 +18,10 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::All();
+        return view('admin.categoria.index')->with([
+            'categorias' => $categorias,
+            ]);
     }
 
     /**
@@ -23,7 +31,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categoria.create');
     }
 
     /**
@@ -34,7 +42,16 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|unique:categorias|max:120',
+        ]);
+
+
+        $categoria = new Categoria($request->all());
+        $categoria->save();
+
+        return redirect('admin/categoria');
+
     }
 
     /**
@@ -56,7 +73,10 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('admin.categoria.edit')->with([
+            $categoria => 'categoria',
+        ]);
     }
 
     /**
@@ -68,7 +88,16 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|unique:categorias|max:120',
+            ]);
+            
+            
+        $categoria = Categoria::find($id);
+        $categoria = new Categoria($request->all());
+        $categoria->update();
+
+        return redirect('admin/categoria');
     }
 
     /**
@@ -79,6 +108,8 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return redirect('admin/categoria');
     }
 }

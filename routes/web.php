@@ -15,8 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::resource('categorias','CategoriassController');
+    Route::resource('clientes','ClientesController');
+    Route::resource('compras','ComprasController');
+    Route::resource('productos','ProductosController');
+    Route::resource('proveedor','ProveedorsController');
+    Route::resource('stockpresent','StockPresentsController');
+    Route::resource('users','UsersController');
+    Route::resource('ventas','VentasController');
+});
 
-Route::get('/welcome', 'HomeController@index2')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
