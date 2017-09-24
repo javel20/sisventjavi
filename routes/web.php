@@ -11,12 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'FrontController@index')->name('front.index');
+
 
 Route::prefix('admin')->group(function () {
-    Route::resource('categorias','CategoriassController');
+
+    Route::get('/', function () {
+        return view('admin.index ');
+    });
+
+    Route::resource('categorias','CategoriasController');
     Route::resource('clientes','ClientesController');
     Route::resource('compras','ComprasController');
     Route::resource('productos','ProductosController');
@@ -24,8 +32,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('stockpresent','StockPresentsController');
     Route::resource('users','UsersController');
     Route::resource('ventas','VentasController');
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

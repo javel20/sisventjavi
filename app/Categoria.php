@@ -3,11 +3,12 @@
 namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
+use sisventjavi\Producto;
 
 class Categoria extends Model
 {
     
-    protected $table='categoria';
+    protected $table='categorias';
 
     protected $fillable = [
         'nombre', 'descripcion', 'estado',
@@ -18,6 +19,8 @@ class Categoria extends Model
      *
      * @var array
      */
-    
+    public function articulos(){
+        return $this->hasMany(Producto::class);
+    }
 
 }
