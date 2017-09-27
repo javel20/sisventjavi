@@ -4,7 +4,7 @@
 
     <div class="container col-sm-9 col-md-9">
     
-        <h1>Nuevo Cliente</h1>
+        <h1>Nueva Categoria</h1>
 
 
     

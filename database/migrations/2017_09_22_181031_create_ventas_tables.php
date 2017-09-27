@@ -16,7 +16,7 @@ class CreateVentasTables extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo',12)->unique();
-            $table->string('fechaventa');
+            $table->string('fechaventa',10);
             $table->text('descripcion');
             $table->string('estado')->default('vendido');
             $table->double('totalventa',8,2);
@@ -24,8 +24,8 @@ class CreateVentasTables extends Migration
 
             $table->integer('cliente_id')->unsigned();
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('trabajador_id')->unsigned();
+            $table->foreign('trabajador_id')->references('id')->on('trabajadors');
             
         });
 
