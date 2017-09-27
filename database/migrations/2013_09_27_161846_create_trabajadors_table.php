@@ -23,6 +23,7 @@ class CreateTrabajadorsTable extends Migration
             $table->string('celular',9);
             $table->string('operador',80);
             $table->string('estado',80)->default('activo');
+            $table->text('descripcion')->nullable();
 
             $table->integer('tipo_trabajador_id')->unsigned();
             $table->foreign('tipo_trabajador_id')->references('id')->on('tipo_trabajadors');

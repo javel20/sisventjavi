@@ -21,8 +21,8 @@ class CreateLicenciasTable extends Migration
             $table->string('estado',100)->default('con permiso');
             $table->text('descripcion')->nullable();
 
-            $table->integer('tipotrab_id')->unsigned();
-            $table->foreign('tipotrab_id')->references('id')->on('tipo_trabajadors');
+            $table->integer('trabajador_id')->unsigned();
+            $table->foreign('trabajador_id')->references('id')->on('trabajadors');
             
             $table->timestamps();
         });

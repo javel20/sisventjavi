@@ -5,7 +5,8 @@ namespace sisventjavi;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use sisventjavi\Venta;
+use sisventjavi\Trabajador;
+use sisventjavi\Acceso;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','type'
+        'email', 'password','estado','trabajador_id'
     ];
 
     /**
@@ -29,8 +30,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function ventas(){
-        return $this->hasMany(Venta::class);
+
+    public function trabajadors(){
+        return $this->belongsTo(Trabajador::class);
+    }
+
+    public function acceso(){
+        return $this->belongsToMany(Acceso::class)->withTimestamps();
     }
 
 }
