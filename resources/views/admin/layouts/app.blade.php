@@ -12,76 +12,123 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css')}}">
+    <!--asset para decir que viene como referencia a un hipervinculo de public-->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/_all-skins.min.css')}}">
+    <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png')}}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico')}}">
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+@if(auth::check())
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+  <header class="main-header">
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Almacen') }}
-                    </a>
-                </div>
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>AD</b>V</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Almacen-Ventas</b></span>
+    </a>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Navegación</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <small class="bg-red">Online</small>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a style="background:blue" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+        </ul>
+    </li>
+    
+</ul>
+</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+</nav>
+</header>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+@include('admin.layouts.menu')
+
+
+<!--Contenido-->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+        @endif
+    
+    <!-- Main content -->
+    <section class="content">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Sistema de Ventas</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
             </div>
-        </nav>
+            <!-- /.box-header -->
+            <div class="box-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                              <!--Contenido-->
+                          @yield('content')
+                              <!--Fin Contenido-->
+                       </div>
+                    </div>
+                        
+                      </div>
+                  </div><!-- /.row -->
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
 
-        @include('admin.layouts.menu')
-
-
-        @yield('content')
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+  <!--Fin-Contenido-->
+<center>
+  <footer class="footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.0
     </div>
+    <strong>Copyright &copy; 2015-2020</strong> All rights reserved.
+</footer>
+</center>
 
     <!-- Scripts -->
     <script src="{{ asset('jquery/jquery.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/app.min.js') }}"></script>
 
 
     @yield('js')
