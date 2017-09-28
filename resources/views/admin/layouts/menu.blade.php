@@ -10,18 +10,93 @@
   <ul class="sidebar-menu tree">
     <li class="header"></li>
     
-    
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Clientes</span>
-             <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ asset('admin/clientes/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-            <li><a href="{{ asset('admin/clientes') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
-          </ul>
-        </li>
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Local</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('locals.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('locals.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Tipo Trabajador</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('tipotrabajador.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('tipotrabajador.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
+
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Trabajador</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('trabajadors.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('trabajadors.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
+
+
+    <li class="treeview">
+    <a href="#">
+      <i class="fa fa-folder"></i>
+      <span>Usuarios</span>
+       <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{{ asset('admin/users/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+      <li><a href="{{ asset('admin/users') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+    </ul>
+    </li>
+
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Licencias</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('licencias.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('licencias.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Acceso</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('accesos.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('accesos.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
+
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-laptop"></i>
+        <span>Clientes</span>
+          <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('clientes.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('clientes.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      </ul>
+    </li>
 
 
     <li class="treeview">
@@ -70,8 +145,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/categorias/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/categorias') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('categorias.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('categorias.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
@@ -100,22 +175,12 @@
     </li>
 
                
-    <li class="treeview">
-    <a href="#">
-      <i class="fa fa-folder"></i>
-      <span>Usuarios</span>
-       <i class="fa fa-angle-left pull-right"></i>
-    </a>
-    <ul class="treeview-menu">
-      <li><a href="{{ asset('admin/users/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-      <li><a href="{{ asset('admin/users') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
-    </ul>
-  </li>
+    
 
 
 
 
-     <li>
+    <li>
       <a href="#">
         <i class="fa fa-plus-square"></i> <span>Ayuda</span>
         <small class="label pull-right bg-red">PDF</small>

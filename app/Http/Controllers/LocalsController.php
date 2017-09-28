@@ -3,6 +3,11 @@
 namespace sisventjavi\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Redirect;
+
+//use sisventjavi\Http\Controllers\Controller;
+use sisventjavi\Http\Requests;
+use sisventjavi\Local;
 
 class LocalsController extends Controller
 {
@@ -13,7 +18,10 @@ class LocalsController extends Controller
      */
     public function index()
     {
-        //
+        $locals = Local::All();
+        return view('admin.local.index')->with([
+            'locals' => $locals,
+            ]);
     }
 
     /**
@@ -23,7 +31,7 @@ class LocalsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.local.create');
     }
 
     /**
@@ -34,7 +42,17 @@ class LocalsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|max:100',
+            'direccion' => 'required|max:150',
+            'telefono'=>'required|max:8',
+            
+        ]);
+
+        $locals = new Local($request->all());
+        $locals->save();
+
+        return redirect('admin/locals');
     }
 
     /**
@@ -56,7 +74,10 @@ class LocalsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $locals = Local::find($id);
+        return view('admin.local.edit')->with([
+            $locals => 'locals',
+        ]);
     }
 
     /**
@@ -68,7 +89,18 @@ class LocalsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|max:100',
+            'direccion' => 'required|max:150',
+            'telefono'=>'required|max:8',
+            'estado'=>'required',
+        ]);
+
+        $locals = Local::find($id);
+        $locals = new Local($request->all());
+        $locals->update();
+
+        return redirect('admin/locals');
     }
 
     /**
@@ -79,6 +111,8 @@ class LocalsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return redirect('admin/categoria');
     }
 }
