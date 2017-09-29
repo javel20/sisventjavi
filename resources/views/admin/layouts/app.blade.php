@@ -49,8 +49,8 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <small class="bg-red">Online</small>
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              <!--<small class="bg-red">Online</small>-->
+              <span class="hidden-xs">{{ Auth::user()->email }}</span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>

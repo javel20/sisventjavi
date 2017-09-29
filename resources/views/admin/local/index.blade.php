@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 
-<a href="{{ route('locals.create') }}" class="btn btn-info">Registrar nuevo</a>
+<a href="{{ route('locals.create') }}" class="btn btn-primary">Registrar nuevo</a>
 
     @include('admin.local.buscar')
 
@@ -31,15 +31,17 @@
                         <td>{{ $local->estado }}</td>
                         
                         <td>
-                            <a href="{{ route('locals.edit',$local->id)}}" class="btn btn-danger">Editar</a>
-                            <a href="{{ route('locals.destroy',$local->id)}}" onclick="return confirm('¿Está seguro?')"class="btn btn-warning">Eliminar</a>
+
+                                <a href="{{ route('locals.edit',$local->id)}}" class="btn btn-danger">Editar</a>
+                                @include('admin.local.delete',['local' => $local])
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-
+        {!! $locals->links() !!}
 
 </div>
 

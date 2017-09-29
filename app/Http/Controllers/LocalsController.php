@@ -16,9 +16,9 @@ class LocalsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $locals = Local::All();
+        $locals = Local::Search($request)->paginate(10);
         return view('admin.local.index')->with([
             'locals' => $locals,
             ]);
@@ -31,7 +31,11 @@ class LocalsController extends Controller
      */
     public function create()
     {
-        return view('admin.local.create');
+        $local = new Local;
+
+        return view('admin.local.create')->with([
+            'local' => $local,
+            ]);
     }
 
     /**
@@ -45,14 +49,18 @@ class LocalsController extends Controller
         $this->validate($request, [
             'nombre' => 'required|max:100',
             'direccion' => 'required|max:150',
-            'telefono'=>'required|max:8',
+            'telefono'=>'required|integer|digits:8',
             
         ]);
 
-        $locals = new Local($request->all());
-        $locals->save();
+        $local = new Local($request->all());
 
-        return redirect('admin/locals');
+        if($local->save()){
+            return redirect("/admin/locals");
+        }else{
+            return view("/locals.create",["local" => $local]);
+        }
+
     }
 
     /**
@@ -74,9 +82,9 @@ class LocalsController extends Controller
      */
     public function edit($id)
     {
-        $locals = Local::find($id);
+        $local = Local::find($id);
         return view('admin.local.edit')->with([
-            $locals => 'locals',
+            'local' => $local,
         ]);
     }
 
@@ -96,11 +104,18 @@ class LocalsController extends Controller
             'estado'=>'required',
         ]);
 
-        $locals = Local::find($id);
-        $locals = new Local($request->all());
-        $locals->update();
-
-        return redirect('admin/locals');
+        $local = Local::find($id);
+        //dd($request->all());
+        $local->nombre = $request->nombre;
+        $local->direccion = $request->direccion;
+        $local->telefono = $request->telefono;
+        $local->estado = $request->estado;
+        
+        if($local->update()){
+            return redirect("/admin/locals");
+        }else{
+            return view("/locals.edit",["local" => $local]);
+        }
     }
 
     /**
@@ -111,8 +126,9 @@ class LocalsController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::find($id);
-        $categoria->delete();
-        return redirect('admin/categoria');
+        $local = Local::find($id);  
+        $local->delete();
+        //Local::Destroy($id)
+        return redirect('/admin/locals');
     }
 }
