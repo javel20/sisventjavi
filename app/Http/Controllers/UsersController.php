@@ -3,6 +3,10 @@
 namespace sisventjavi\Http\Controllers;
 
 use Illuminate\Http\Request;
+use sisventjavi\Http\Requests;
+use sisventjavi\Http\Controllers\Controller;
+use sisventjavi\Trabajador;
+use sisventjavi\User;
 
 class UsersController extends Controller
 {
@@ -11,9 +15,15 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $users = User::Search($request)->paginate(10);
+        $users->each(function($users){
+            $users->trabajador;
+        });
+        //dd($users);
+
+        return view('admin.user.index')->with('users',$users);
     }
 
     /**
@@ -23,7 +33,10 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $trabs = Trabajador::all()->pluck('nombre','id');
+        return view('admin.user.create')->with([
+            'trabs' =>$trabs,
+            ]);
     }
 
     /**
@@ -34,7 +47,22 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'password' =>'required',
+            'email' => 'required',
+            'trabajador' => 'required',
+        ]);
+
+        $user= new User($request->all());
+        $user->password = bcrypt($request->password);
+        $user->trabajador_id = $request->trabajador;
+        //dd($user);
+        //dd($request->all());
+        if($user->save()){
+            return redirect("/admin/users");
+        }else{
+            return view("/users.create",["user" => $user]);
+        }
     }
 
     /**
@@ -56,7 +84,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $trabs = Trabajador::all()->pluck('nombre','id');
+        return view('admin.user.edit')->with([
+            'user' => $user,
+            'trabs' => $trabs,
+        ]);
     }
 
     /**
@@ -68,7 +101,25 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+
+            'email' => 'required',
+            'estado' => 'required',
+            'trabajador' => 'required',
+        ]);
+
+        $user = User::find($id);    
+        $user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->trabajador_id = $request->trabajador;
+        $user->estado = $request->estado;
+        //dd($user);
+        //dd($request->all());
+        if($user->update()){
+            return redirect("/admin/users");
+        }else{
+            return view("/users.edit",["user" => $user]);
+        }
     }
 
     /**

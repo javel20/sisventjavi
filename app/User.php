@@ -31,12 +31,21 @@ class User extends Authenticatable
     ];
 
 
-    public function trabajadors(){
+    public function trabajador(){
         return $this->belongsTo(Trabajador::class);
     }
 
     public function acceso(){
         return $this->belongsToMany(Acceso::class)->withTimestamps();
+    }
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('email','LIKE', "%$dato->buscar%")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('users.*');
+                        
+        
     }
 
 }

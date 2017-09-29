@@ -47,7 +47,6 @@ class Trabajador extends Model
                         ->orWhere('estado','LIKE', "$dato->buscar")
                         ->select('trabajadors.*');
                         
-        
     }
 
     

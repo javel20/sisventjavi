@@ -26,7 +26,7 @@ class TrabajadorsController extends Controller
             $trabajadors->local;
             $trabajadors->tipoTrabajador;
         });
-        
+        //dd($trabajadors);
 
         return view('admin.trabajador.index')->with([
             'trabajadors' => $trabajadors,
