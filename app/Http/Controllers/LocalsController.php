@@ -31,11 +31,12 @@ class LocalsController extends Controller
      */
     public function create()
     {
-        $local = new Local;
 
+        $local = new Local;
         return view('admin.local.create')->with([
             'local' => $local,
             ]);
+
     }
 
     /**
@@ -100,7 +101,7 @@ class LocalsController extends Controller
         $this->validate($request, [
             'nombre' => 'required|max:100',
             'direccion' => 'required|max:150',
-            'telefono'=>'required|max:8',
+            'telefono'=>'required|integer|digits:8',
             'estado'=>'required',
         ]);
 
@@ -114,7 +115,7 @@ class LocalsController extends Controller
         if($local->update()){
             return redirect("/admin/locals");
         }else{
-            return view("/locals.edit",["local" => $local]);
+            return view("locals.edit",["local" => $local]);
         }
     }
 

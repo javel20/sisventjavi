@@ -18,4 +18,14 @@ class TipoTrabajador extends Model
     public function trabajadors(){
         return $this->hasMany(Trabajador::class);
     }
+
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->select('tipo_trabajadors.*');
+                        
+        
+    }
+
 }

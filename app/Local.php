@@ -21,7 +21,10 @@ class Local extends Model
 
     public function scopeSearch($query, $dato){
         
-        return $query->where('nombre','LIKE', "%$dato->buscar%");
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('locals.*');
+                        
         
     }
 }
