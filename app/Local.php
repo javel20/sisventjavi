@@ -3,7 +3,7 @@
 namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
-use sisventjavi\Trabajador ;
+use sisventjavi\Trabajador;
 
 class Local extends Model
 {

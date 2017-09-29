@@ -25,7 +25,7 @@ class Trabajador extends Model
         return $this->belongsTo(Local::class);
     }
 
-    public function tipotrabajador(){
+    public function tipoTrabajador(){
         return $this->belongsTo(TipoTrabajador::class);
     }
 
@@ -35,6 +35,19 @@ class Trabajador extends Model
 
     public function licencia(){
         return $this->hasMany(Licencia::class);
+    }
+
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->orwhere('apellidopat','LIKE',"%$dato->buscar%")
+                        ->orwhere('apellidomat','LIKE',"%$dato->buscar%")
+                        ->orwhere('DNI','LIKE',"$dato->buscar")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('trabajadors.*');
+                        
+        
     }
 
     
