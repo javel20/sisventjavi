@@ -26,4 +26,17 @@ class Proveedor extends Model
         return $this->belongTo(Compra::class);
     }
 
+    public function scopeSearch($query, $dato){
+        
+        return $query   ->where('nombre_empresa','LIKE', "%$dato->buscar%")
+                        ->orwhere('estado','LIKE', "$dato->buscar")
+                        ->orwhere('apellidomat','LIKE', "%$dato->buscar%")
+                        ->orwhere('apellidopat','LIKE', "%$dato->buscar%")
+                        ->orwhere('nombre_contacto','LIKE', "%$dato->buscar%")
+                        ->orwhere('RUC','LIKE', "%$dato->buscar%")
+                        ->select('proveedors.*');
+                        
+        
+    }
+
 }

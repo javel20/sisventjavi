@@ -118,8 +118,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/proveedors/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/proveedors') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ asset('admin/proveedor/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ asset('admin/proveedor') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
