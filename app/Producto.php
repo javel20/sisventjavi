@@ -28,5 +28,14 @@ class Producto extends Model
         return $this->hasMany(StockPresent::class);
     }
 
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('codigo','LIKE', "%$dato->buscar%")
+                        ->orwhere('nombre','LIKE',"%$dato->buscar%")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('productos.*');
+                        
+    }
+
 
 }
