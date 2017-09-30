@@ -16,12 +16,21 @@ class Cliente extends Model
 
         /**
      * The attributes that should be hidden for arrays.
-     *
+     *  
      * @var array
      */
 
     public function ventas(){
         return $this->hasMany(Venta::class);
+    }
+
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->select('clientes.*');
+                        
+        
     }
 
 

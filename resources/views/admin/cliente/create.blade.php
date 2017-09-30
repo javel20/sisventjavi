@@ -1,10 +1,9 @@
 @extends('admin.layouts.app')
 @section('content')
 
-{!! Form::open(['route' => ['trabajadors.store'], 'method' => 'POST']) !!}
+{!! Form::open(['route' => ['clientes.store'], 'method' => 'POST']) !!}
 
-<h3>Crear nuevo trabajador</h3>
-
+    <h3>Crear cliente</h3>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -19,35 +18,35 @@
         <div class="form-group">
         
             {!! Form::label('nombre','Nombre') !!}
-            {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre del trabajador','maxlength'=>'80', 'required']) !!}
+            {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
         <div class="form-group">
         
-            {!! Form::label('apellidopat','Apellido paterno') !!}
-            {!! Form::text('apellidopat',null,['class' => 'form-control','placeholder'=>'apellido paterno','maxlength'=>'80', 'required']) !!}
+            {!! Form::label('apellidopat','Apellido Paterno') !!}
+            {!! Form::text('apellidopat',null,['class' => 'form-control','placeholder'=>'Apellido paterno del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
         <div class="form-group">
         
-            {!! Form::label('apellidomat','Apellido materno') !!}
-            {!! Form::text('apellidomat',null,['class' => 'form-control','placeholder'=>'apellido materno','maxlength'=>'80', 'required']) !!}
+            {!! Form::label('apellidomat','Apellido Materno') !!}
+            {!! Form::text('apellidomat',null,['class' => 'form-control','placeholder'=>'Apellido materno del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
         <div class="form-group">
         
-            {!! Form::label('DNI','DNI') !!}
-            {!! Form::text('DNI',null,['class' => 'form-control','placeholder'=>'DNI','maxlength'=>'8', 'required']) !!}
+            {!! Form::label('dni','DNI') !!}
+            {!! Form::text('DNI',null,['class' => 'form-control','placeholder'=>'Numero de DNI','maxlength'=>'8', 'required']) !!}
             
         </div>
 
         <div class="form-group">
         
             {!! Form::label('direccion','Direccion') !!}
-            {!! Form::text('direccion',null,['class' => 'form-control','placeholder'=>'Direccion','maxlength'=>'100', 'required']) !!}
+            {!! Form::text('direccion',null,['class' => 'form-control','placeholder'=>'Direccion','maxlength'=>'80', 'required']) !!}
             
         </div>
 
@@ -67,26 +66,20 @@
 
         <div class="form-group">
         
-            {!! Form::label('descripcion','Descripcion') !!}
-            {!! Form::text('descripcion',null,['class' => 'form-control','placeholder'=>'Descripcion','maxlength'=>'250']) !!}
+            {!! Form::label('email','Email') !!}
+            {!! Form::text('email',null,['class' => 'form-control','placeholder'=>'Ejm:asd@asd.com','maxlength'=>'80', 'required']) !!}
             
         </div>
 
         <div class="form-group">
         
-            {!! Form::label('locals','Local') !!}
-            {!! Form::select('local',$locals,null ,['class' => 'form-control select-tag', 'required']) !!}
-            
-        </div>
-
-        <div class="form-group">
-
-            {!! Form::label('tipoTrabajador','Tipo Trabajador') !!}
-            {!! Form::select('tipotrab',$tipotrabs,null ,['class' => 'form-control select-tag', 'required']) !!}
+            {!! Form::label('descripcion','Descripcion') !!}
+            {!! Form::text('descripcion',null,['class' => 'form-control','placeholder'=>'Descripcion','maxlength'=>'250']) !!}
             
         </div>
 
        
+
         <div class="form-group">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
