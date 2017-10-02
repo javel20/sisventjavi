@@ -15,8 +15,8 @@ class CreateStockPresentTables extends Migration
     {
         Schema::create('stock_present', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('stockmin');
-            $table->string('stockreal');
+            $table->string('stockmin',8);
+            $table->string('stockreal',8);
             $table->string('nombre',100)->unique();
             $table->double('porc_ganancia',8,2);
             $table->double('precioventa',8,2);

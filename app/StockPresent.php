@@ -34,4 +34,12 @@ class StockPresent extends Model
         return $this->belongsToMany(Venta::class);
     }
 
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('stock_present.*');
+                        
+    }
+
 }

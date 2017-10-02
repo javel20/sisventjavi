@@ -169,8 +169,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/stock-present/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/stock-present') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('stockpresent.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('stockpresent.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
