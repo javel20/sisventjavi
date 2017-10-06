@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('categorias','CategoriasController');
     Route::resource('clientes','ClientesController');
-    Route::resource('compras','ComprasController');
+    Route::resource('compras','CompsController');
     Route::resource('productos','ProductosController');
     Route::resource('proveedor','ProveedorsController');
     Route::resource('stockpresent','StockPresentsController');

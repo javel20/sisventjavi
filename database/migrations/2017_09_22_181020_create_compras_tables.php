@@ -37,10 +37,10 @@ class CreateComprasTables extends Migration
                 $table->double('costototal',8,2);
                 $table->timestamps();
 
-                $table->integer('compra_id')->unsigned();
-                $table->foreign('compra_id')->references('id')->on('compras');
-                $table->integer('stock_present_id')->unsigned();
-                $table->foreign('stock_present_id')->references('id')->on('stock_present');
+                $table->integer('comp_id')->unsigned();
+                $table->foreign('comp_id')->references('id')->on('compras');
+                $table->integer('stockpresent_id')->unsigned();
+                $table->foreign('stockpresent_id')->references('id')->on('stock_present');
             });
 
     }

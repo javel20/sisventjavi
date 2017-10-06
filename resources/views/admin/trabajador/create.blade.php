@@ -72,20 +72,7 @@
             
         </div>
 
-        <div class="form-group">
-        
-            {!! Form::label('locals','Local') !!}
-            {!! Form::select('local',$locals,null ,['class' => 'form-control select-tag', 'required']) !!}
-            
-        </div>
-
-        <div class="form-group">
-
-            {!! Form::label('tipoTrabajador','Tipo Trabajador') !!}
-            {!! Form::select('tipotrab',$tipotrabs,null ,['class' => 'form-control select-tag', 'required']) !!}
-            
-        </div>
-
+  
        
         <div class="form-group">
         

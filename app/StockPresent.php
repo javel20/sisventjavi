@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Producto;
 use sisventjavi\Compra;
 use sisventjavi\Venta;
+use sisventjavi\DetalleVenta;
+use sisventjavi\DetalleComp;
 
 class StockPresent extends Model
 {
@@ -22,7 +24,7 @@ class StockPresent extends Model
      * @var array
      */
      
-     public function producto(){
+    public function producto(){
         return $this->belongsTo(Producto::class);
     }
 
@@ -32,6 +34,14 @@ class StockPresent extends Model
 
     public function venta(){
         return $this->belongsToMany(Venta::class);
+    }
+
+    public function detallecomp(){
+        return $this->hasMany(DetalleComp::class);
+    }
+
+    public function detalleventa(){
+        return $this->hasMany(DetalleVenta::class);
     }
 
     public function scopeSearch($query, $dato){

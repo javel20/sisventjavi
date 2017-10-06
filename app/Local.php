@@ -15,7 +15,7 @@ class Local extends Model
         ];
 
 
-    public function trabajadors(){
+    public function trabajador(){
         return $this->hasMany(Trabajador::class);
     }
 

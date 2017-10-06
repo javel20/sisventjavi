@@ -3,6 +3,11 @@
 namespace sisventjavi\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Redirect;
+
+//use sisventjavi\Http\Controllers\Controller;
+use sisventjavi\Http\Requests;
+use sisventjavi\Venta;
 
 class VentasController extends Controller
 {
@@ -13,7 +18,8 @@ class VentasController extends Controller
      */
     public function index()
     {
-        //
+        $venta = Venta::all();
+        dd($venta);
     }
 
     /**

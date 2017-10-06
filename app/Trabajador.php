@@ -7,6 +7,8 @@ use sisventjavi\Local;
 use sisventjavi\TipoTrabajador;
 use sisventjavi\user;
 use sisventjavi\Licencia;
+use sisventjavi\Comp;
+use sisventjavi\Venta;
 
 class Trabajador extends Model
 {
@@ -35,6 +37,14 @@ class Trabajador extends Model
 
     public function licencia(){
         return $this->hasMany(Licencia::class);
+    }
+
+    public function comp(){
+        return $this->hasMany(Comp::class);
+    }
+
+    public function venta(){
+        return $this->hasMany(venta::class);
     }
 
 

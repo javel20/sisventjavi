@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Cliente;
 use sisventjavi\Trabajador;
 use sisventjavi\StockPresent;
+use sisventjavi\DetalleVenta;
 
 class Venta extends Model
 {
@@ -22,15 +23,19 @@ class Venta extends Model
      */
 
     public function cliente(){
-        return $this->belongTo(Cliente::class);
+        return $this->belongsTo(Cliente::class);
     }
 
     public function trabajador(){
-        return $this->belongTo(Trabajador::class);
+        return $this->belongsTo(Trabajador::class);
     }
 
     public function stockpresent(){
         return $this->belongsToMany(Compra::class)->withTimestamps();
+    }
+
+    public function detalleventa(){
+        return $this->belongsTo(DetalleVenta::class);
     }
 
 }

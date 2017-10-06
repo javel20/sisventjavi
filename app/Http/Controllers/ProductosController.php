@@ -9,6 +9,7 @@ use Illuminate\Http\Redirect;
 use sisventjavi\Http\Requests;
 use sisventjavi\Producto;
 use sisventjavi\Categoria;
+use sisventjavi\StockPresent;
 
 
 class ProductosController extends Controller
@@ -23,6 +24,8 @@ class ProductosController extends Controller
         $productos = Producto::Search($request)->paginate(10);
         $productos->each(function($productos){
             $productos->categoria;
+            $productos->stockpresen;
+
         });
         //dd($productos);
 

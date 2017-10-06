@@ -9,6 +9,7 @@ use Illuminate\Http\Redirect;
 use sisventjavi\Http\Requests;
 use sisventjavi\StockPresent;
 use sisventjavi\Producto;
+use sisventjavi\DetalleCompra;
 
 class StockPresentsController extends Controller
 {
@@ -22,8 +23,9 @@ class StockPresentsController extends Controller
         $stockpresents = StockPresent::Search($request)->paginate(10);
         $stockpresents->each(function($stockpresents){
             $stockpresents->producto;
+            $stockpresents->detallecomp;
         });
-        //dd($stockpresent);
+        //dd($stockpresents);
 
         return view('admin.stockpresent.index')->with([
             'stockpresents' => $stockpresents,

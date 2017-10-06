@@ -56,8 +56,8 @@
        <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><a href="{{ asset('admin/users/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-      <li><a href="{{ asset('admin/users') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+      <li><a href="{{ route('users.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+      <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
     </ul>
     </li>
 
@@ -106,8 +106,8 @@
         <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/categorias/create') }}"><i class="fa fa-circle-o"></i>Crear</a></li>
-        <li><a href="{{ asset('admin/categorias') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('ventas.create') }}"><i class="fa fa-circle-o"></i>Crear</a></li>
+        <li><a href="{{ route('ventas.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
@@ -118,8 +118,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/proveedor/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/proveedor') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('proveedor.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('proveedor.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
@@ -132,8 +132,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/compras/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/compras') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('compras.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('compras.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 
@@ -157,8 +157,8 @@
          <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ asset('admin/productos/create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ asset('admin/productos') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
+        <li><a href="{{ route('productos.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+        <li><a href="{{ route('productos.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
 

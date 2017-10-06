@@ -4,7 +4,7 @@ namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
 
-use sisventjavi\Compra;
+use sisventjavi\Comp;
 
 class Proveedor extends Model
 {
@@ -22,8 +22,8 @@ class Proveedor extends Model
      * @var array
      */
 
-    public function compras(){
-        return $this->belongTo(Compra::class);
+    public function comp(){
+        return $this->hasMany(Comp::class);
     }
 
     public function scopeSearch($query, $dato){

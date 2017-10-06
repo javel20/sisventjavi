@@ -10,6 +10,7 @@ use sisventjavi\Http\Requests;
 use sisventjavi\Trabajador;
 use sisventjavi\TipoTrabajador;
 use sisventjavi\Local;
+use sisventjavi\Comp;
 
 
 class TrabajadorsController extends Controller
@@ -25,8 +26,9 @@ class TrabajadorsController extends Controller
         $trabajadors->each(function($trabajadors){
             $trabajadors->local;
             $trabajadors->tipoTrabajador;
+            $trabajadors->comp;
         });
-        //dd($trabajadors);
+        dd($trabajadors);
 
         return view('admin.trabajador.index')->with([
             'trabajadors' => $trabajadors,
