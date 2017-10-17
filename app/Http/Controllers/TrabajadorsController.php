@@ -28,7 +28,7 @@ class TrabajadorsController extends Controller
             $trabajadors->tipoTrabajador;
             $trabajadors->comp;
         });
-        dd($trabajadors);
+        //dd($trabajadors);
 
         return view('admin.trabajador.index')->with([
             'trabajadors' => $trabajadors,

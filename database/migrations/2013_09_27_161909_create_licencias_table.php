@@ -18,7 +18,7 @@ class CreateLicenciasTable extends Migration
             $table->string('nombre',100);
             $table->string('fechai',10);
             $table->string('fechaf',10);
-            $table->string('estado',100)->default('con permiso');
+            $table->string('estado',100)->default('Con permiso');
             $table->text('descripcion')->nullable();
 
             $table->integer('trabajador_id')->unsigned();

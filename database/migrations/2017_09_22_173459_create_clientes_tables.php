@@ -24,7 +24,7 @@ class CreateClientesTables extends Migration
             $table->string('celular',9);
             $table->string('operador',50);
             $table->string('email',100)->nullable();
-            $table->string('estado',80)->default('activo');
+            $table->string('estado',80)->default('Activo');
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

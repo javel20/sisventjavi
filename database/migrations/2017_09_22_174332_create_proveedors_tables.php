@@ -24,7 +24,7 @@ class CreateProveedorsTables extends Migration
             $table->string('celular_contacto',9);
             $table->string('operador',80);
             $table->string('email',100)->nullable();
-            $table->string('estado',80)->default('activo');
+            $table->string('estado',80)->default('Activo');
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

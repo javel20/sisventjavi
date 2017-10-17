@@ -4,7 +4,7 @@ namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Producto;
-use sisventjavi\Compra;
+use sisventjavi\Comp;
 use sisventjavi\Venta;
 use sisventjavi\DetalleVenta;
 use sisventjavi\DetalleComp;
@@ -29,7 +29,7 @@ class StockPresent extends Model
     }
 
     public function compra(){
-        return $this->belongsToMany(Compra::class);
+        return $this->belongsToMany(Comp::class);
     }
 
     public function venta(){
@@ -48,6 +48,13 @@ class StockPresent extends Model
         
         return $query->where('nombre','LIKE', "%$dato->buscar%")
                         ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('stock_present.*');
+                        
+    }
+
+    public function scopeStajax($query){
+        
+        return $query->where('producto_id','=',2)
                         ->select('stock_present.*');
                         
     }

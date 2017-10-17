@@ -13,12 +13,14 @@ class CreateComprasTables extends Migration
      */
     public function up()
     {
-        Schema::create('compras', function (Blueprint $table) {
+        Schema::create('comps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo',12)->unique();
+            //$table->bigInteger('codigo')->unsigned();
+            //$table->primary('codigo');
             $table->string('fechacompra',10);
-            $table->text('descripcion');
-            $table->string('estado')->default('comprado');
+            $table->text('descripcion')->nullable();
+            $table->string('estado')->default('Comprado');
             $table->double('totalcompra',8,2);
             $table->timestamps();
 
@@ -31,14 +33,16 @@ class CreateComprasTables extends Migration
 
             Schema::create('detalle_compra', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('cantidad');
-                $table->string('fechavenc');
+                $table->string('cantidad',8);
+                $table->string('fechavenc',10);
                 $table->double('costounitario',8,2);
                 $table->double('costototal',8,2);
                 $table->timestamps();
 
+                //$table->bigInteger('comp_codigo')->unsigned();
+                //$table->foreign('comp_codigo')->references('codigo')->on('comps');
                 $table->integer('comp_id')->unsigned();
-                $table->foreign('comp_id')->references('id')->on('compras');
+                $table->foreign('comp_id')->references('id')->on('comps');
                 $table->integer('stockpresent_id')->unsigned();
                 $table->foreign('stockpresent_id')->references('id')->on('stock_present');
             });
@@ -53,6 +57,6 @@ class CreateComprasTables extends Migration
     public function down()
     {
         Schema::dropIfExists('detalle_compra');
-        Schema::dropIfExists('compras');
+        Schema::dropIfExists('comps');
     }
 }

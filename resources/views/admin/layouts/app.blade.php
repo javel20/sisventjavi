@@ -127,6 +127,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('jquery/jquery.js') }}"></script>
+    @stack('scripts')
     <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
 

@@ -35,9 +35,10 @@
                         <td>{{ $producto->descripcion }}</td>
                         
                         <td>
-
+                            <div>
                                 <a href="{{ route('productos.edit',$producto->id)}}" class="btn btn-danger">Editar</a>
                                 @include('admin.producto.delete',['producto' => $producto])
+                            </div>
 
                         </td>
                     </tr>

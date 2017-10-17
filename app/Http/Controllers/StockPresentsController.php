@@ -23,7 +23,7 @@ class StockPresentsController extends Controller
         $stockpresents = StockPresent::Search($request)->paginate(10);
         $stockpresents->each(function($stockpresents){
             $stockpresents->producto;
-            $stockpresents->detallecomp;
+            //$stockpresents->detallecomp;
         });
         //dd($stockpresents);
 
@@ -133,7 +133,7 @@ class StockPresentsController extends Controller
         $stockpresent->fill($request->all());
         $stockpresent->producto_id = $request->producto;
 
-        if($stockpresent->save()){
+        if($stockpresent->update()){
             return redirect("/admin/stockpresent");
         }else{
             return view("/stockpresent.create",["stockpresent" => $stockpresent]);

@@ -37,9 +37,10 @@
                 <td>{{ $compra->descripcion }}</td>
                 
                 <td>
-
+                    <div style="display:inline">
                         <a href="{{ route('compras.edit',$compra->id)}}" class="btn btn-danger">Editar</a>
                         @include('admin.compra.delete',['compra' => $compra])
+                    </div>
 
                 </td>
             </tr>

@@ -29,7 +29,7 @@ class CompsController extends Controller
         $compras->each(function($compras){
             $compras->trabajador;
             $compras->proveedor;
-            $compras->detallecomp;
+            //$compras->detallecomp;
         });
         /*$detallecomp = DetalleComp::all();
         $detallecomp->each(function($detallecomp){
@@ -56,6 +56,9 @@ class CompsController extends Controller
         $proveedors = Proveedor::all()->pluck('nombre_empresa','id');
         $stockpresents = StockPresent::all()->pluck('nombre','id');
         $productos = Producto::all()->pluck('nombre','id');
+        
+        //$prods = StockPresent::all();
+        //dd($stockpresents[0]->stockreal);
         $compra = new Comp;
         //dd($stockpresents);
         return view('admin.compra.create')->with([
@@ -63,6 +66,7 @@ class CompsController extends Controller
             'proveedors' =>$proveedors,
             'stockpresents' =>$stockpresents,
             'productos' =>$productos,
+            //'prods' =>$prods,
             ]);
     }
 
@@ -75,49 +79,68 @@ class CompsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'codigo' => 'required|max:100',
-            'fechacompra' => 'required|max:100',
-            'totalcompra' => 'required|max:100',
+            'codigo' => 'required',
+            'fechacompra' => 'required',
+            'totalcompra' => 'required',
             'descripcion' => 'max:250',
             'proveedor' => 'required',
             //'producto' => 'required',
-            
+        
         ]);
-        //dd($request->all());
+        //dd($stockpresent);
 
         try{
             DB::beginTransaction();
 
                 $comp = new Comp($request->all());
                 $comp->proveedor_id = $request->proveedor;
+                $comp->codigo = $request->codigo;
                 $comp->trabajador_id = \Auth::user()->id;
                 //dd($comp);
                 $comp->save();
-/*
+                
                 $cantidad = $request->cantidad;
                 $fechaven = $request->fechaven;
                 $costounitario = $request->costounitario;
                 $costototal = $request->costototal;
-                $comp_id = $request->compra;
+                $comp_id = $request->codigo;
                 $stockpresent_id = $request->stockpresent;
 
-                    $cont=0;
-
-                    while($cont < count($stockpresent_id)){
-                        $detalle_comp = new Comp();
-                        $detalle_comp->cantidad = $cantidad[$cont];
-                        $detalle_comp->fechaven = $fechaven[$cont];
-                        $detalle_comp->costounitario = $costounitario[$cont];
-                        $detalle_comp->costototal = $costototal[$cont];
-                        $detalle_comp->comp_id = $comp_id[$cont];
-                        $detalle_comp->stockpresent_id = $stockpresent_id[$cont];
-                        $detalle_comp->save();
-                        $cont=$cont+1;
-                    }
-
-*/
-
-
+                $insertedId= $comp->id;
+                //dd($insertedId+1);
+                
+                //dd($request);
+                $cont=0;
+                
+                while($cont < count($stockpresent_id)){
+                    //dd(count($stockpresent_id));
+                    $detalle_comp = new DetalleComp();
+                    $detalle_comp->cantidad = $cantidad[$cont];
+                    $detalle_comp->fechavenc = $fechaven[$cont];
+                    $detalle_comp->costounitario = $costounitario[$cont];
+                    $detalle_comp->costototal = $costototal[$cont];
+                    $detalle_comp->comp_id = $insertedId;
+                    $detalle_comp->stockpresent_id = $stockpresent_id[$cont];
+                    //dd($fechaven[$cont]);
+                    //dd($stockpresent_id[$cont]);
+                    //dd($detalle_comp);
+                    $detalle_comp->save();
+                    
+                    $stockpresent = Stockpresent::find($stockpresent_id[$cont]);
+                    $postst=$stockpresent->stockreal;
+                    //dd($postst);
+                    //$poststockreal=$stockpresents[$detalle_comp->stockpresent_id]->stockreal;
+                    $stockpresent->stockreal = $postst+$cantidad[$cont];
+                    //dd($stockpresent->stockreal);
+                    //$stockpresent->fill($request->all());
+                    //$stockpresents->stockreal+$cantidad[$cont];
+                    //dd($stockpresent->stockreal);
+                    //$fechaven[$cont];
+                    $stockpresent->update();
+                    
+                    $cont=$cont+1;
+                    
+                }
 
             DB::commit();
         }catch(\Exception $e){

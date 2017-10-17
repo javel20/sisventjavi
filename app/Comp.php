@@ -10,7 +10,7 @@ use sisventjavi\DetalleComp;
 
 class Comp extends Model
 {
-    protected $table='compras';
+    protected $table='comps';
     
         protected $fillable = [
             'codigo','fechacompra','estado','descripcion', 'totalcompra','proveedor_id','trabajador_id'
@@ -43,7 +43,7 @@ class Comp extends Model
         
         return $query->where('codigo','LIKE', "%$dato->buscar%")
                         ->orWhere('estado','LIKE', "$dato->buscar")
-                        ->select('compras.*');
+                        ->select('comps.*');
                         
     }
      

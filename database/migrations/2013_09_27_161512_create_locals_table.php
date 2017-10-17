@@ -18,7 +18,7 @@ class CreateLocalsTable extends Migration
             $table->string('nombre',100);
             $table->string('direccion',150);
             $table->string('telefono',8);
-            $table->string('estado',50)->default('activo');
+            $table->string('estado',50)->default('Activo');
             $table->timestamps();
         });
     }

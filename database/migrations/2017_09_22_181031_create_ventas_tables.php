@@ -16,9 +16,11 @@ class CreateVentasTables extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo',12)->unique();
+            //$table->bigInteger('codigo')->unsigned();
+            //$table->primary('codigo');
             $table->string('fechaventa',10);
-            $table->text('descripcion');
-            $table->string('estado')->default('vendido');
+            $table->text('descripcion')->nullable();
+            $table->string('estado')->default('Vendido');
             $table->double('totalventa',8,2);
             $table->timestamps();
 
@@ -31,16 +33,18 @@ class CreateVentasTables extends Migration
 
             Schema::create('detalle_venta', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('cantidad');
+                $table->string('cantidad',8);
                 
                 $table->double('costounitario',8,2);
                 $table->double('costototal',8,2);
                 $table->timestamps();
 
+                //$table->bigInteger('venta_codigo')->unsigned();
+                //$table->foreign('venta_codigo')->references('codigo')->on('ventas');
                 $table->integer('venta_id')->unsigned();
                 $table->foreign('venta_id')->references('id')->on('ventas');
-                $table->integer('stock_present_id')->unsigned();
-                $table->foreign('stock_present_id')->references('id')->on('stock_present');
+                $table->integer('stockpresent_id')->unsigned();
+                $table->foreign('stockpresent_id')->references('id')->on('stock_present');
             });
     }
 
