@@ -35,7 +35,15 @@ class Venta extends Model
     }
 
     public function detalleventa(){
-        return $this->belongsTo(DetalleVenta::class);
+        return $this->hasMany(DetalleVenta::class);
+    }
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('codigo','LIKE', "%$dato->buscar%")
+                        ->orWhere('estado','LIKE', "$dato->buscar")
+                        ->select('ventas.*');
+                        
     }
 
 }

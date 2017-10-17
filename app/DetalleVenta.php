@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Venta;
 use sisventjavi\StockPresent;
 
-class Compra extends Model
+class DetalleVenta extends Model
 {
     protected $table='detalle_venta';
     
