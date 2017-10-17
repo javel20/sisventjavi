@@ -35,6 +35,17 @@
                     
         </div>
 
+
+
+        <div class="form-group">
+        
+            {!! Form::label('accesos','Accesos') !!}
+            {!! Form::select('accesos[]',$accesos,null ,['class' => 'form-control select-tag','multiple', 'required']) !!}
+            
+        </div>
+
+
+
         <div class="form-group">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}

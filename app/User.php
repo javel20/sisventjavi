@@ -35,7 +35,7 @@ class User extends Authenticatable
         return $this->belongsTo(Trabajador::class);
     }
 
-    public function acceso(){
+    public function accesos(){
         return $this->belongsToMany(Acceso::class)->withTimestamps();
     }
 

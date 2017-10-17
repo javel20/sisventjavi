@@ -7,6 +7,7 @@ use sisventjavi\Http\Requests;
 use sisventjavi\Http\Controllers\Controller;
 use sisventjavi\Trabajador;
 use sisventjavi\User;
+use sisventjavi\Acceso;
 
 class UsersController extends Controller
 {
@@ -34,8 +35,12 @@ class UsersController extends Controller
     public function create()
     {
         $trabs = Trabajador::all()->pluck('nombre','id');
+        $accesos = Acceso::all()->pluck('nombre','id');
+        //dd($accesos)->first();
         return view('admin.user.create')->with([
             'trabs' =>$trabs,
+            'accesos' =>$accesos
+
             ]);
     }
 
@@ -58,7 +63,13 @@ class UsersController extends Controller
         $user->trabajador_id = $request->trabajador;
         //dd($user);
         //dd($request->all());
+
+        
+        
         if($user->save()){
+
+            $user->accesos()->sync($request->accesos);
+
             return redirect("/admin/users");
         }else{
             return view("/users.create",["user" => $user]);

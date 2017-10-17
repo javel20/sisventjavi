@@ -31,7 +31,7 @@
         <div class="form-group">
         
                 {!! Form::label('estado','Estado') !!}
-                {!! Form::select('estado',['0'=>'Seleccione una opción','activo'=>'activo','inactivo'=>'inactivo'],$user->estado,['class' => 'form-control select-tag', 'required']) !!}
+                {!! Form::select('estado',['0'=>'Seleccione una opción','Activo'=>'activo','inactivo'=>'Inactivo'],$user->estado,['class' => 'form-control select-tag', 'required']) !!}
                 
         </div>
 
