@@ -17,4 +17,12 @@ class Acceso extends Model
     public function user(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->select('accesos.*');
+                        
+        
+    }
 }

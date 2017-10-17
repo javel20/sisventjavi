@@ -56,7 +56,7 @@ class CategoriasController extends Controller
         $categoria->save();
 
         if($categoria->save()){
-            return redirect("/admin/categorias");
+            return redirect("admin/categorias");
         }else{
             return view("categorias.create",["categoria" => $categoria]);
         }

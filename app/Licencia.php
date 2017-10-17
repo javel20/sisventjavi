@@ -17,7 +17,15 @@ class Licencia extends Model
         ];
 
 
-    public function trabajadors(){
+    public function trabajador(){
         return $this->belongsTo(Trabajador::class);
+    }
+
+    public function scopeSearch($query, $dato){
+        
+        return $query->where('nombre','LIKE', "%$dato->buscar%")
+                        ->select('licencias.*');
+                        
+        
     }
 }
