@@ -3,7 +3,7 @@
 namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 
 class Local extends Model
 {
@@ -15,8 +15,8 @@ class Local extends Model
         ];
 
 
-    public function trabajador(){
-        return $this->hasMany(Trabajador::class);
+    public function user(){
+        return $this->hasMany(User::class);
     }
 
     public function scopeSearch($query, $dato){

@@ -3,7 +3,7 @@
 
 {!! Form::open(['route' => ['licencias.update',$licencia], 'method' => 'PUT']) !!}
 
-<h3>Crear nuevo trabajador</h3>
+<h3>Editar licencia</h3>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -39,8 +39,8 @@
 
         <div class="form-group">
 
-            {!! Form::label('trabajador','Trabajador') !!}
-            {!! Form::select('trabajador',$trabajadors,$licencia->trabajador->id ,['class' => 'form-control select-tag', 'required']) !!}
+            {!! Form::label('user','Trabajador') !!}
+            {!! Form::select('user',$users,$licencia->user->id ,['class' => 'form-control select-tag', 'required']) !!}
             
         </div>
 

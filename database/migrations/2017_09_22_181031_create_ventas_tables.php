@@ -26,8 +26,8 @@ class CreateVentasTables extends Migration
 
             $table->integer('cliente_id')->unsigned();
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->integer('trabajador_id')->unsigned();
-            $table->foreign('trabajador_id')->references('id')->on('trabajadors');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             
         });
 

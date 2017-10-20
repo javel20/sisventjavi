@@ -9,7 +9,7 @@ use Illuminate\Http\Redirect;
 use sisventjavi\Http\Requests;
 use sisventjavi\Venta;
 use sisventjavi\DetalleVenta;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 use sisventjavi\Cliente;
 use sisventjavi\StockPresent;
 use sisventjavi\Producto;
@@ -26,7 +26,7 @@ class VentasController extends Controller
     {
         $ventas = Venta::Search($request)->paginate(10);
         $ventas->each(function($ventas){
-            $ventas->trabajador;
+            $ventas->user;
             $ventas->cliente;
             //$ventas->detalleventa;
         });
@@ -95,7 +95,7 @@ class VentasController extends Controller
                 $venta->cliente_id = $request->cliente;
                 $venta->fechaventa = $request->fechaventa;
                 $venta->codigo = $request->codigo;
-                $venta->trabajador_id = \Auth::user()->id;
+                $venta->user_id = \Auth::user()->id;
                 //dd($request);
                 $venta->save();
                 

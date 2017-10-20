@@ -28,12 +28,6 @@
             
         </div>
 
-        <div class="form-group">
-        
-            {!! Form::label('Trabajador','Trabajador') !!}
-            {!! Form::select('trabajador',$trabs,null ,['class' => 'form-control select-tag', 'required']) !!}
-                    
-        </div>
 
 
 

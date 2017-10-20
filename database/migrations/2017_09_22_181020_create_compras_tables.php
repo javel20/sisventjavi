@@ -26,8 +26,8 @@ class CreateComprasTables extends Migration
 
             $table->integer('proveedor_id')->unsigned();
             $table->foreign('proveedor_id')->references('id')->on('proveedors');
-            $table->integer('trabajador_id')->unsigned();
-            $table->foreign('trabajador_id')->references('id')->on('trabajadors');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             
         });
 

@@ -32,7 +32,7 @@
                 <td>{{ $venta->fechaventa }}</td>
                 <td>{{ $venta->totalventa }}</td>
                 <td>{{ $venta->cliente->nombre }}</td>
-                <td>{{ $venta->trabajador->nombre }} {{ $venta->trabajador->apellidopat }} {{ $venta->trabajador->apellidomat }}</td>
+                <td>{{ $venta->user->nombre }} {{ $venta->user->apellidopat }} {{ $venta->user->apellidomat }}</td>
                 <td>{{ $venta->estado }}</td>
                 <td>{{ $venta->descripcion }}</td>
                 

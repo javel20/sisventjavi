@@ -4,7 +4,7 @@ namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Cliente;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 use sisventjavi\StockPresent;
 use sisventjavi\DetalleVenta;
 
@@ -13,7 +13,7 @@ class Venta extends Model
     protected $table='ventas';
     
         protected $fillable = [
-            'codigo','estado','descripcion','totalventa','cliente_id','trabajador_id'
+            'codigo','estado','descripcion','totalventa','cliente_id','user_id'
         ];
 
         /**
@@ -26,8 +26,8 @@ class Venta extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function trabajador(){
-        return $this->belongsTo(Trabajador::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function stockpresent(){

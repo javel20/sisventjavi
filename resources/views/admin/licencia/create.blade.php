@@ -39,8 +39,8 @@
 
         <div class="form-group">
 
-            {!! Form::label('trabajador','trabajador') !!}
-            {!! Form::select('trabajador',$trabajadors,null ,['class' => 'form-control select-tag', 'required']) !!}
+            {!! Form::label('user','Trabajador') !!}
+            {!! Form::select('user',$users,null ,['class' => 'form-control select-tag', 'required']) !!}
             
         </div>
 

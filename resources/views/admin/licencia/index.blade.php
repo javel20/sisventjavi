@@ -30,7 +30,7 @@
                         <td>{{ $licencia->nombre }}</td>
                         <td>{{ $licencia->fechai }}</td>
                         <td>{{ $licencia->fechaf }}</td>
-                        <td>{{ $licencia->trabajador->nombre }}</td>
+                        <td>{{ $licencia->user->nombre }}</td>
                         <td>{{ $licencia->estado }}</td>
                         <td>{{ $licencia->descripcion }}</td>
                         

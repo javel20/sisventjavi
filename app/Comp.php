@@ -5,7 +5,7 @@ namespace sisventjavi;
 use Illuminate\Database\Eloquent\Model;
 use sisventjavi\Proveedor;
 use sisventjavi\StockPresent;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 use sisventjavi\DetalleComp;
 
 class Comp extends Model
@@ -13,7 +13,7 @@ class Comp extends Model
     protected $table='comps';
     
         protected $fillable = [
-            'codigo','fechacompra','estado','descripcion', 'totalcompra','proveedor_id','trabajador_id'
+            'codigo','fechacompra','estado','descripcion', 'totalcompra','proveedor_id','user_id'
         ];
 
         /**
@@ -26,8 +26,8 @@ class Comp extends Model
         return $this->belongsTo(Proveedor::class);
     }
 
-    public function trabajador(){
-        return $this->belongsTo(Trabajador::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function detallecomp(){

@@ -5,7 +5,7 @@ namespace sisventjavi\Http\Controllers;
 use Illuminate\Http\Request;
 use sisventjavi\Http\Requests;
 use sisventjavi\Http\Controllers\Controller;
-use sisventjavi\Trabajador;
+//use sisventjavi\Trabajador;
 use sisventjavi\User;
 use sisventjavi\Acceso;
 
@@ -20,7 +20,7 @@ class UsersController extends Controller
     {
         $users = User::Search($request)->paginate(10);
         $users->each(function($users){
-            $users->trabajador;
+            $users->accesos;
         });
         //dd($users);
 
@@ -34,11 +34,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $trabs = Trabajador::all()->pluck('nombre','id');
+        //$trabs = Trabajador::all()->pluck('nombre','id');
         $accesos = Acceso::all()->pluck('nombre','id');
         //dd($accesos)->first();
         return view('admin.user.create')->with([
-            'trabs' =>$trabs,
+            //'trabs' =>$trabs,
             'accesos' =>$accesos
 
             ]);
@@ -55,12 +55,12 @@ class UsersController extends Controller
         $this->validate($request, [
             'password' =>'required',
             'email' => 'required',
-            'trabajador' => 'required',
+            //'trabajador' => 'required',
         ]);
 
         $user= new User($request->all());
         $user->password = bcrypt($request->password);
-        $user->trabajador_id = $request->trabajador;
+        //$user->trabajador_id = $request->trabajador;
         //dd($user);
         //dd($request->all());
 
@@ -96,10 +96,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $trabs = Trabajador::all()->pluck('nombre','id');
+        $accesos = Acceso::all()->pluck('nombre','id');
         return view('admin.user.edit')->with([
             'user' => $user,
-            'trabs' => $trabs,
+            'accesos' => $accesos,
         ]);
     }
 
@@ -116,13 +116,13 @@ class UsersController extends Controller
 
             'email' => 'required',
             'estado' => 'required',
-            'trabajador' => 'required',
+            //'trabajador' => 'required',
         ]);
 
         $user = User::find($id);    
         $user->password = bcrypt($request->password);
         $user->email = $request->email;
-        $user->trabajador_id = $request->trabajador;
+        //$user->trabajador_id = $request->trabajador;
         $user->estado = $request->estado;
         //dd($user);
         //dd($request->all());
@@ -141,6 +141,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::find($id);  
+        $users->delete();
+        //users::Destroy($id)
+        return redirect('/admin/tipotrabajador');
     }
 }

@@ -3,7 +3,7 @@
 namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 
 class TipoTrabajador extends Model
 {
@@ -15,8 +15,8 @@ class TipoTrabajador extends Model
         ];
 
 
-    public function trabajadors(){
-        return $this->hasMany(Trabajador::class);
+    public function user(){
+        return $this->hasMany(User::class);
     }
 
 

@@ -3,7 +3,7 @@
 namespace sisventjavi;
 
 use Illuminate\Database\Eloquent\Model;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 
 class Licencia extends Model
 {
@@ -13,12 +13,12 @@ class Licencia extends Model
         protected $fillable = [
             'nombre','fechai','fechaf',
             'estado', 'descripcion',
-            'trabajador_id',
+            'user_id',
         ];
 
 
-    public function trabajador(){
-        return $this->belongsTo(Trabajador::class);
+    public function User(){
+        return $this->belongsTo(User::class);
     }
 
     public function scopeSearch($query, $dato){

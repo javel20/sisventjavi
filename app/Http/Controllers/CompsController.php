@@ -10,7 +10,7 @@ use sisventjavi\Http\Requests;
 use sisventjavi\Comp;
 use sisventjavi\DetalleComp;
 use sisventjavi\Proveedor;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 use sisventjavi\StockPresent;
 use sisventjavi\Producto;
 
@@ -27,7 +27,7 @@ class CompsController extends Controller
     {
         $compras = Comp::Search($request)->paginate(10);
         $compras->each(function($compras){
-            $compras->trabajador;
+            $compras->user;
             $compras->proveedor;
             //$compras->detallecomp;
         });
@@ -95,7 +95,7 @@ class CompsController extends Controller
                 $comp = new Comp($request->all());
                 $comp->proveedor_id = $request->proveedor;
                 $comp->codigo = $request->codigo;
-                $comp->trabajador_id = \Auth::user()->id;
+                $comp->user_id = \Auth::user()->id;
                 //dd($comp);
                 $comp->save();
                 
@@ -208,7 +208,7 @@ class CompsController extends Controller
         $compra = Comp::find($id);
         $compra->fill($request->all());
         $compra->proveedor_id = $request->proveedor;
-        $compra->trabajador_id = \Auth::user()->id;
+        $compra->user_id = \Auth::user()->id;
 
         if($compra->update()){
             return redirect("admin/compras");

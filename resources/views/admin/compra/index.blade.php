@@ -32,7 +32,7 @@
                 <td>{{ $compra->fechacompra }}</td>
                 <td>{{ $compra->totalcompra }}</td>
                 <td>{{ $compra->proveedor->nombre_empresa }}</td>
-                <td>{{ $compra->trabajador->nombre }} {{ $compra->trabajador->apellidopat }} {{ $compra->trabajador->apellidomat }}</td>
+                <td>{{ $compra->user->nombre }} {{ $compra->user->apellidopat }} {{ $compra->user->apellidomat }}</td>
                 <td>{{ $compra->estado }}</td>
                 <td>{{ $compra->descripcion }}</td>
                 

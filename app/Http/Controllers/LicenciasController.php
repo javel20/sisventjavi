@@ -8,7 +8,7 @@ use Illuminate\Http\Redirect;
 //use sisventjavi\Http\Controllers\Controller;
 use sisventjavi\Http\Requests;
 use sisventjavi\Licencia;
-use sisventjavi\Trabajador;
+use sisventjavi\User;
 
 class LicenciasController extends Controller
 {
@@ -21,7 +21,7 @@ class LicenciasController extends Controller
     {
         $licencias = Licencia::Search($request)->paginate(10);
         $licencias->each(function($licencias){
-            $licencias->trabajador;
+            $licencias->user;
 
         });
         //dd($licencias);
@@ -38,10 +38,10 @@ class LicenciasController extends Controller
      */
     public function create()
     {
-        $trabajadors = Trabajador::where('estado','activo')->pluck('nombre','id');
+        $users = User::where('estado','activo')->pluck('nombre','id');
         $licencia = new licencia;
         return view('admin.licencia.create')->with([
-            'trabajadors' => $trabajadors,
+            'users' => $users,
             ]);
     }
 
@@ -58,20 +58,20 @@ class LicenciasController extends Controller
             'fechai' => 'required|max:10',
             'fechaf' => 'required|max:10',
             'descripcion' => 'max:250',
-            'trabajador' => 'required',
+            'user' => 'required',
 
         ]);
         
         $licencia = new licencia($request->all());
         //dd($request->all());
 
-        $licencia->trabajador_id = $request->trabajador;
+        $licencia->user_id = $request->user;
         //dd($licencia);
 
         if($licencia->save()){
             return redirect("admin/licencias");
         }else{
-            return view("licencias.create",["trabajador" => $trabajador]);
+            return view("licencias.create",["user" => $user]);
         }
     }
 
@@ -95,11 +95,11 @@ class LicenciasController extends Controller
     public function edit($id)
     {
         $licencia = licencia::find($id);
-        $trabajadors = Trabajador::all()->pluck('nombre','id');
+        $users = User::all()->pluck('nombre','id');
         
             return view('admin.licencia.edit')->with([
                 'licencia' => $licencia,
-                'trabajadors' => $trabajadors,
+                'users' => $users,
             ]);
     }
 
@@ -118,14 +118,14 @@ class LicenciasController extends Controller
             'fechaf' => 'required|max:10',
             'estado' => 'required',
             'descripcion' => 'max:250',
-            'trabajador' => 'required',
+            'user' => 'required',
             
         ]);
 
         $licencia = licencia::find($id);
 
         $licencia->fill($request->all());
-        $licencia->trabajador_id = $request->trabajador;
+        $licencia->user_id = $request->user;
 
         //$licencia->imagen = $name;
         //dd($request->all());

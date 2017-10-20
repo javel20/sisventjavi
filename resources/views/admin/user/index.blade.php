@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->trabajador->nombre }} {{ $user->trabajador->apellidopat }} {{ $user->trabajador->apellidomat }}</td>
+                        <td>{{ $user->nombre }} {{ $user->apellidopat }} {{ $user->apellidomat }}</td>
                         <td>{{ $user->estado }}</td>
                         <td>
                             @if($user->type == "admin")
