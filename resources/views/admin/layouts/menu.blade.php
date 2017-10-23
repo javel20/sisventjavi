@@ -10,6 +10,8 @@
   <ul class="sidebar-menu tree">
     <li class="header"></li>
     
+  @foreach(session("accesos") as $acceso)
+    @if($acceso->pivot->acceso_id==11)
 
     <li class="treeview">
       <a href="#">
@@ -22,6 +24,11 @@
         <li><a href="{{ route('locals.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+
+    @if($acceso->pivot->acceso_id==10) 
+
 
     <li class="treeview">
       <a href="#">
@@ -34,21 +41,9 @@
         <li><a href="{{ route('tipotrabajador.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
 
-
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-laptop"></i>
-        <span>Trabajador</span>
-          <i class="fa fa-angle-left pull-right"></i>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="{{ route('trabajadors.create') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
-        <li><a href="{{ route('trabajadors.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
-      </ul>
-    </li>
-
-
+    @if($acceso->pivot->acceso_id==8)
     <li class="treeview">
     <a href="#">
       <i class="fa fa-folder"></i>
@@ -60,6 +55,9 @@
       <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
     </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==9)
 
 
     <li class="treeview">
@@ -73,6 +71,9 @@
         <li><a href="{{ route('licencias.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==8)
 
     <li class="treeview">
       <a href="#">
@@ -85,6 +86,9 @@
         <li><a href="{{ route('accesos.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==7)
 
     <li class="treeview">
       <a href="#">
@@ -97,6 +101,9 @@
         <li><a href="{{ route('clientes.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==5)
 
 
     <li class="treeview">
@@ -110,6 +117,9 @@
         <li><a href="{{ route('ventas.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==6)
 
     <li class="treeview">
       <a href="#">
@@ -122,6 +132,9 @@
         <li><a href="{{ route('proveedor.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==4)
 
 
     
@@ -136,6 +149,9 @@
         <li><a href="{{ route('compras.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==1)
 
 
     <li class="treeview">
@@ -149,6 +165,9 @@
         <li><a href="{{ route('categorias.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==2)
 
     <li class="treeview">
       <a href="#">
@@ -161,6 +180,9 @@
         <li><a href="{{ route('productos.index') }}"><i class="fa fa-circle-o"></i> Listado</a></li>
       </ul>
     </li>
+    @endif
+
+    @if($acceso->pivot->acceso_id==3)
 
     <li class="treeview">
       <a href="#">
@@ -175,8 +197,9 @@
     </li>
 
                
-    
+    @endif
 
+    @endforeach
 
 
 
@@ -192,6 +215,7 @@
         <small class="label pull-right bg-yellow">IT</small>
       </a>
     </li>
+
                 
   </ul>
 </section>

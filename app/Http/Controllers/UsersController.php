@@ -5,9 +5,10 @@ namespace sisventjavi\Http\Controllers;
 use Illuminate\Http\Request;
 use sisventjavi\Http\Requests;
 use sisventjavi\Http\Controllers\Controller;
-//use sisventjavi\Trabajador;
+use sisventjavi\TipoTrabajador;
 use sisventjavi\User;
 use sisventjavi\Acceso;
+use sisventjavi\Local;
 
 class UsersController extends Controller
 {
@@ -21,6 +22,8 @@ class UsersController extends Controller
         $users = User::Search($request)->paginate(10);
         $users->each(function($users){
             $users->accesos;
+            $users->tipoTrabajador;
+            $users->local;
         });
         //dd($users);
 
@@ -34,14 +37,17 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //$trabs = Trabajador::all()->pluck('nombre','id');
+        $tipotrabs = TipoTrabajador::all()->pluck('nombre','id');
         $accesos = Acceso::all()->pluck('nombre','id');
+        $locals = Local::all()->pluck('nombre','id');
         //dd($accesos)->first();
         return view('admin.user.create')->with([
-            //'trabs' =>$trabs,
-            'accesos' =>$accesos
+            'tipotrabs' =>$tipotrabs,
+            'accesos' =>$accesos,
+            'locals' =>$locals,
 
             ]);
+            
     }
 
     /**
@@ -53,14 +59,25 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'password' =>'required',
             'email' => 'required',
+            'password' =>'required',
+            'nombre' =>'required|max:80',
+            'apellidopat' =>'required|max:80',
+            'apellidomat' =>'required|max:80',
+            'DNI' =>'required|max:8',
+            'direccion' =>'required|max:80',
+            'celular' =>'required|max:9',
+            'operador' =>'required',
+            'tipotrabajador' =>'required',
+            'local' =>'required',
+            //'password' =>'required',
             //'trabajador' => 'required',
         ]);
 
-        $user= new User($request->all());
+        $user = new User($request->all());
         $user->password = bcrypt($request->password);
-        //$user->trabajador_id = $request->trabajador;
+        $user->tipo_trabajador_id = $request->tipotrabajador;
+        $user->local_id = $request->local;
         //dd($user);
         //dd($request->all());
 
@@ -70,9 +87,9 @@ class UsersController extends Controller
 
             $user->accesos()->sync($request->accesos);
 
-            return redirect("/admin/users");
+            return redirect("admin/users");
         }else{
-            return view("/users.create",["user" => $user]);
+            return view("users.create",["user" => $user]);
         }
     }
 
@@ -96,10 +113,16 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $tipotrabs = TipoTrabajador::all()->pluck('nombre','id');
         $accesos = Acceso::all()->pluck('nombre','id');
+        $locals = Local::all()->pluck('nombre','id');
+        $my_users = $user->accesos->pluck('id')->ToArray();
         return view('admin.user.edit')->with([
             'user' => $user,
             'accesos' => $accesos,
+            'tipotrabs' => $tipotrabs,
+            'locals' => $locals,
+            'my_users' => $my_users
         ]);
     }
 
@@ -115,21 +138,38 @@ class UsersController extends Controller
         $this->validate($request, [
 
             'email' => 'required',
-            'estado' => 'required',
-            //'trabajador' => 'required',
+            //'password' =>'required',
+            'nombre' =>'required|max:80',
+            'apellidopat' =>'required|max:80',
+            'apellidomat' =>'required|max:80',
+            'DNI' =>'required|max:8',
+            'direccion' =>'required|max:80',
+            'celular' =>'required|max:9',
+            'operador' =>'required',
+            'tipotrabajador' =>'required',
+            'accesos' => 'required',
+            'local' =>'required',
+            'estado' =>'required',
+            'descripcion' =>'max:250',
+
         ]);
 
         $user = User::find($id);    
         $user->password = bcrypt($request->password);
+        $user->fill($request->all());
         $user->email = $request->email;
-        //$user->trabajador_id = $request->trabajador;
         $user->estado = $request->estado;
+        $user->tipo_trabajador_id = $request->tipotrabajador;
+        $user->local_id = $request->local;
         //dd($user);
         //dd($request->all());
         if($user->update()){
-            return redirect("/admin/users");
+
+            $user->accesos()->sync($request->accesos);
+
+            return redirect("admin/users");
         }else{
-            return view("/users.edit",["user" => $user]);
+            return view("users.edit",["user" => $user]);
         }
     }
 
@@ -143,7 +183,7 @@ class UsersController extends Controller
     {
         $users = User::find($id);  
         $users->delete();
-        //users::Destroy($id)
-        return redirect('/admin/tipotrabajador');
+        //users::Destroy($id);
+        return redirect('admin/users');
     }
 }

@@ -27,7 +27,7 @@
                         <td>{{ $user->nombre }} {{ $user->apellidopat }} {{ $user->apellidomat }}</td>
                         <td>{{ $user->estado }}</td>
                         <td>
-                            @if($user->type == "admin")
+                            @if($user->tipotrabs == "admin")
                                 <span class="label label-danger">{{ $user->type }}</span>
                             @else
                                 <span class="label label-primary">{{ $user->type }}</span>
@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             <a href="{{ route('users.edit',$user->id)}}" class="btn btn-danger">Editar</a>
-                            <a href="{{ route('users.destroy',$user->id)}}" onclick="return confirm('¿Está seguro?')"class="btn btn-warning">Eliminar</a>
+                            @include('admin.user.delete',['users' => $users])
                         </td>
                     </tr>
                 @endforeach

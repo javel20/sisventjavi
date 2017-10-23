@@ -98,11 +98,12 @@ class TipoTrabajadorsController extends Controller
         $this->validate($request, [
             'nombre' => 'required|max:100',
             'descripcion' => 'max:250',
-
+            
         ]);
 
         $tipotrabs = TipoTrabajador::find($id);
         //dd($request->all());
+        $tipotrabs->fill($request->all());
         $tipotrabs->nombre = $request->nombre;
         $tipotrabs->descripcion = $request->descripcion;
         
