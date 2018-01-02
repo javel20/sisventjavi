@@ -64,6 +64,7 @@
                         <div class="form-group col-md-6">
                         
                             {!! Form::label('producto','Producto') !!}
+                            {{--{{ Form::select('asdasds', [''], $productos, ['class' => 'form-control select-tag']) }}--}}
                             {!! Form::select('producto',$productos,null ,['class' => 'form-control select-tag']) !!}
                             
                         </div>
@@ -73,7 +74,7 @@
                         <div class="form-group col-md-6">
         
                             {!! Form::label('stockpresent','Stock-Presentacion') !!}
-                            {!! Form::select('stockpresent',$stockpresents,null ,['class' => 'form-control select-tag']) !!}
+                            {!! Form::select('stockpresent',array(''), null,['class' => 'form-control select-tag'] ) !!}
                             
                         </div>
 
@@ -152,9 +153,57 @@
 @push('scripts')
     <script>
 
+
     $(document).ready(function(){
         $('#btn_add').click(function(){
             agregar();
+        });
+
+        $("#stockpresent").on("change", function(event){//changue evento para seleccionar una opcion
+        console.log("estoy en stockpresent")
+        // var option = $(e).find('option:selected');
+        //   console.log(e.target.value);
+        //   console.log(option);
+            
+        //traigo el precioventa
+        event.target.childNodes.forEach(function(e){ //event.target haciendo click en uno trae los select y con el chilNodes trae los option, foreach recorro a todos los elementos del array, function(e) recore cada elemento en este caso los option
+          if(e.value==event.target.value){ //e.value traigo el atributo value y o igualo al value del evento que estoy seleccionando
+            precioventa = e.getAttribute('precioventa');//e.get... traigo el atributo precio y lo asigno a precio
+            console.log(precioventa);
+          }
+        });
+
+
+        $('#preciounitario').val(precioventa);
+
+        })
+
+
+        $("#producto").change(function(e){
+            //console.log(e.target.value);
+            $.ajax({
+                url:"http://localhost/sisventjavi/public/admin/ajaxstockpresent", 
+                data : {
+                    'IdProducto' : e.target.value
+                },
+                success:function(response){
+
+                    let acum = "";
+                    response.map(e => {
+                        acum += `<option precioventa=`+e.precioventa+` stockreal=`+e.stockreal+` value=${e.id}>${e.nombre} - ${e.stockreal}</option>`    
+                    })
+                    $("#stockpresent").html(acum);
+
+                },
+
+                error:function(response){
+                    console.log(response);
+                    
+                }
+
+
+            })
+
         });
     });
 

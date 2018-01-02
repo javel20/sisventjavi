@@ -153,4 +153,13 @@ class StockPresentsController extends Controller
         //stockpresent::Destroy($id)
         return redirect('/admin/stockpresent');
     }
+
+    public function findByIdStockPresent(Request $request){
+        //return "productos";
+        $ajax = StockPresent::where('producto_id', $request->IdProducto)->get();
+        return  $ajax;
+
+        
+
+    }
 }

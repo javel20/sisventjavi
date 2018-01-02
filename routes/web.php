@@ -67,6 +67,7 @@ Route::prefix('admin')->group(function () {
     
     Route::group(['middleware' => ['accesomenu:3']], function () {
         Route::resource('stockpresent','StockPresentsController');
+        Route::get('ajaxstockpresent','StockPresentsController@findByIdStockPresent');
     });
 
     Route::group(['middleware' => ['accesomenu:5']], function () {

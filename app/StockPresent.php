@@ -52,11 +52,11 @@ class StockPresent extends Model
                         
     }
 
-    public function scopeStajax($query){
+/*     public function scopeStajax($query){
         
         return $query->where('producto_id','=',2)
                         ->select('stock_present.*');
-                        
-    }
+        control+shift+a                
+    } */
 
 }
