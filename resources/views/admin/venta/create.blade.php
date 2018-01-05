@@ -88,15 +88,15 @@
 
                         <div class="form-group col-md-6">
                         
-                            {!! Form::label('preciounitario','Precio Unitario') !!}
-                            {!! Form::text('preciounitario',null,['class' => 'form-control','placeholder'=>'S/. ','maxlength'=>'10']) !!}
+                            {!! Form::label('preciounitario','Precio unitario de venta') !!}
+                            {!! Form::text('preciounitario',null,['class' => 'form-control','readonly'=>'readonly','placeholder'=>'S/. ','maxlength'=>'10']) !!}
                             
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" style="display:none">
                         
                             {!! Form::label('preciototal','Sub Total') !!}
-                            {!! Form::text('preciototal',null,['class' => 'form-control','placeholder'=>'S/. ','maxlength'=>'12']) !!}
+                            {!! Form::text('preciototal',null,['class' => 'form-control','readonly'=>'readonly','placeholder'=>'S/. ','maxlength'=>'12']) !!}
                             
                         </div>
 
@@ -179,6 +179,7 @@
         })
 
 
+
         $("#producto").change(function(e){
             //console.log(e.target.value);
             $.ajax({
@@ -223,18 +224,23 @@
 
 //15:18
         if(cantidad != "" && stockpresent != "" && preciounitario != ""){
-
-            preciototal[cont]=cantidad*preciounitario;
-        console.log("preciototal"+preciototal);
+            //var preciototal=0;
+            preciototal[cont]=Number(cantidad)*Number(preciounitario);
+            console.log("preciototal"+Number(preciototal));
             total=Number(total)+Number(preciototal[cont]);
+            
             $("#totalventa").val(total);
-        console.log(Number("total"+total));
+            console.log(Number("total"+total));
+
             var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">Supr</button></td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="producto[]" value="'+producto+'">'+producto+'</td><td><input type="hidden" name="stockpresent[]" value="'+stockpresent+'">'+stockpresent+'</td>><td><input type="hidden" name="preciounitario[]" value="'+preciounitario+'">'+preciounitario+'</td><td><input type="hidden" name="preciototal[]" value="'+preciototal[cont]+'">'+preciototal[cont]+'</td></tr>';
             cont++;
+
             limpiar();
             $("#total").html("S/. "+ total);
+
             evaluar();
             $('#detalles').append(fila);
+
         }else{
             alert("LLene bien el formulario");
         }
@@ -244,7 +250,7 @@
         function limpiar(){
             $("#cantidad").val("");
             $("#preciounitario").val("");
-            $("#preciototal").val("");
+            //$("#preciototal").val("");
 
         }
 

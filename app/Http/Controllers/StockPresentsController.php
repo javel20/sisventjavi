@@ -59,8 +59,10 @@ class StockPresentsController extends Controller
             'stockmin' => 'required|max:10',
             'stockreal' => 'required|max:10',
             'nombre' => 'required|max:80',
-            'porc_ganancia' => 'required|numeric',
+            'precio'=>'required|numeric',
             'precioventa'=>'required|numeric',
+            'porc_ganancia' => 'required|numeric',
+            'ganancia'=>'required|numeric',
             'descripcion' => 'max:250',
             'producto' => 'required',
             
@@ -68,6 +70,8 @@ class StockPresentsController extends Controller
         //dd($request->all());
         $stockpresent = new StockPresent($request->all());
         $stockpresent->producto_id = $request->producto;
+        $stockpresent->precio = $request->precio;
+        $stockpresent->ganancia = $request->ganancia;
         $stockpresent->porc_ganancia = $request->porc_ganancia;
 
         if($stockpresent->save()){

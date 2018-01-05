@@ -22,6 +22,7 @@ class CreateVentasTables extends Migration
             $table->text('descripcion')->nullable();
             $table->string('estado')->default('Vendido');
             $table->double('totalventa',8,2);
+            //$table->double('ganancia',8,2);
             $table->timestamps();
 
             $table->integer('cliente_id')->unsigned();

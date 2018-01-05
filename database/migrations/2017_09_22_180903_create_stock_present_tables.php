@@ -18,8 +18,10 @@ class CreateStockPresentTables extends Migration
             $table->string('stockmin',8);
             $table->string('stockreal',8);
             $table->string('nombre',100);
-            $table->double('porc_ganancia',8,2);
+            $table->double('precio',8,2);
             $table->double('precioventa',8,2);
+            $table->double('porc_ganancia',8,2);
+            $table->double('ganancia',8,2);
             $table->string('estado',100)->default('Activo');
             $table->text('descripcion')->nullable();
             $table->timestamps();

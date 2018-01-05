@@ -16,42 +16,56 @@
         @endif
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('nombre','Nombre') !!}
             {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre del trabajador','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('stockminimo','Stock minimo') !!}
             {!! Form::text('stockmin',null,['class' => 'form-control','placeholder'=>'ingrese stock minimo','maxlength'=>'8', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('stockreal','Stock real') !!}
             {!! Form::text('stockreal',null,['class' => 'form-control','placeholder'=>'ingrese stock real','maxlength'=>'8', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
-            {!! Form::label('ganancia','Porcentaje de ganancia') !!}
+            {!! Form::label('precio','Precio Compra') !!}
+            {!! Form::text('precio',null,['class' => 'form-control','placeholder'=>'Precio compra','maxlength'=>'9', 'required']) !!}
+            
+        </div>
+
+        <div class="form-group col-md-6">
+        
+            {!! Form::label('porc_ganancia','Porcentaje de ganancia') !!}
             {!! Form::text('porc_ganancia',null,['class' => 'form-control','placeholder'=>'%','maxlength'=>'100', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('precioventa','Precio Venta') !!}
-            {!! Form::text('precioventa',null,['class' => 'form-control','placeholder'=>'Precio venta','maxlength'=>'9', 'required']) !!}
+            {!! Form::text('precioventa',null,['class' => 'form-control','readonly'=>'readonly','placeholder'=>'Precio venta','maxlength'=>'20', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
+        
+            {!! Form::label('ganancia','Ganancia') !!}
+            {!! Form::text('ganancia',null,['class' => 'form-control','readonly'=>'readonly','placeholder'=>'Ganancia','maxlength'=>'9', 'required']) !!}
+            
+        </div>
+
+        <div class="form-group col-md-6">
         
             {!! Form::label('descripcion','Descripcion') !!}
             {!! Form::text('descripcion',null,['class' => 'form-control','placeholder'=>'Descripcion','maxlength'=>'250']) !!}
@@ -59,19 +73,61 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
 
             {!! Form::label('prod','Producto') !!}
             {!! Form::select('producto',$productos,null ,['class' => 'form-control select-tag', 'required']) !!}
             
         </div>
 
-       
-        <div class="form-group">
+       <br>
+        <div class="form-group col-md-12">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         
         </div>
+
+
+
+@push('scripts')
+    <script>
+
+    $("#precio").on("change", function(event){//changue evento para seleccionar una opcion
+        $("#porc_ganancia").val("");
+        $("#precioventa").val("");
+        $("#ganancia").val("");
+    })
+
+    $("#porc_ganancia").on("change", function(event){//changue evento para seleccionar una opcion
+
+        precio=$("#precio").val();
+        precioventa=$("#precioventa").val();
+        porc_ganancia=$("#porc_ganancia").val();
+        ganancia=$("#ganancia").val();
+        console.log(precio);
+
+        //if(precio != "" && porc_ganancia != "" && precioventa != ""){
+
+        precioventa=((Number(precio)*(Number(porc_ganancia))/100)+Number(precio));
+        console.log(precioventa);
+        $("#precioventa").val(precioventa);
+
+        ganancia=Number(precioventa-precio);
+        $("#ganancia").val(ganancia);
+        /* }else{
+            alert("LLene bien el formulario");
+        } */
+
+
+        console.log("estoy en por_ganancia")
+
+        $('#precioventa').val(precioventa);
+
+        })
+
+
+    </script>
+@endpush
 
 {!! Form::close() !!}
 
