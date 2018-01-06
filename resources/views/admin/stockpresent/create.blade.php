@@ -18,8 +18,8 @@
 
         <div class="form-group col-md-6">
         
-            {!! Form::label('nombre','Nombre') !!}
-            {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre del trabajador','maxlength'=>'80', 'required']) !!}
+            {!! Form::label('nombre','Nombre de la presentación') !!}
+            {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre de la presentación','maxlength'=>'80', 'required']) !!}
             
         </div>
 
@@ -108,11 +108,13 @@
 
         //if(precio != "" && porc_ganancia != "" && precioventa != ""){
 
-        precioventa=((Number(precio)*(Number(porc_ganancia))/100)+Number(precio));
+        precioventa=((Number(precio)*(Number(porc_ganancia))/100)+Number(precio)).toFixed(2);
         console.log(precioventa);
         $("#precioventa").val(precioventa);
 
-        ganancia=Number(precioventa-precio);
+        ganancia=Number(precioventa-precio).toFixed(2);
+        console.log("ganancia"+ganancia);
+
         $("#ganancia").val(ganancia);
         /* }else{
             alert("LLene bien el formulario");

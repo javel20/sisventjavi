@@ -100,8 +100,10 @@
                             
                         </div>
 
+                        
+
                         <div class="form-group col-md-12">
-        
+              
                             {!! Form::button('Agregar detalle', ['class' => 'btn btn-primary','id'=>'btn_add']) !!}
                         
                         </div>
@@ -142,6 +144,7 @@
 
         <div class="form-group col-md-12" id="guardar">
             <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+            <input type="hidden" value="" name="gananciatotal" id="gananciatotal" /> 
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         
         </div>
@@ -169,7 +172,14 @@
         event.target.childNodes.forEach(function(e){ //event.target haciendo click en uno trae los select y con el chilNodes trae los option, foreach recorro a todos los elementos del array, function(e) recore cada elemento en este caso los option
           if(e.value==event.target.value){ //e.value traigo el atributo value y o igualo al value del evento que estoy seleccionando
             precioventa = e.getAttribute('precioventa');//e.get... traigo el atributo precio y lo asigno a precio
-            console.log(precioventa);
+            console.log("precioventa"+precioventa);
+          }
+        });
+
+        event.target.childNodes.forEach(function(e){ //event.target haciendo click en uno trae los select y con el chilNodes trae los option, foreach recorro a todos los elementos del array, function(e) recore cada elemento en este caso los option
+          if(e.value==event.target.value){ //e.value traigo el atributo value y o igualo al value del evento que estoy seleccionando
+            precio = e.getAttribute('precio');//e.get... traigo el atributo precio y lo asigno a precio
+            console.log("preciocompra"+precio);
           }
         });
 
@@ -191,7 +201,7 @@
 
                     let acum = "";
                     response.map(e => {
-                        acum += `<option precioventa=`+e.precioventa+` stockreal=`+e.stockreal+` value=${e.id}>${e.nombre} - ${e.stockreal}</option>`    
+                        acum += `<option precio=`+e.precio+` precioventa=`+e.precioventa+` stockreal=`+e.stockreal+` value=${e.id}>${e.nombre} - ${e.stockreal}</option>`    
                     })
                     $("#stockpresent").html(acum);
 
@@ -211,6 +221,9 @@
     var cont=0;
     total=0;
     subtotal=[];
+    let gananciatotal=0;
+    let ganancia=0;
+
     $("#guardar").hide();
 
     function agregar(){
@@ -219,18 +232,29 @@
         producto=$("#producto option:selected").text();
         stockpresent=$("#stockpresent option:selected").val();
         //fechaven=$("#fechaven").val();
+        //ganancia=$("#ganancia").val();
         preciounitario=$("#preciounitario").val();
         //preciototal=$("#preciototal").val();
 
 //15:18
-        if(cantidad != "" && stockpresent != "" && preciounitario != ""){
             //var preciototal=0;
-            preciototal[cont]=Number(cantidad)*Number(preciounitario);
-            console.log("preciototal"+Number(preciototal));
+
+        if(cantidad != "" && stockpresent != "" && preciounitario != ""){
+            preciototal[cont]=Number(cantidad)*Number(preciounitario).toFixed(2);
+            console.log("cantidad"+cantidad);
+            console.log("preciototal"+Number(preciototal[cont]));
+
             total=Number(total)+Number(preciototal[cont]);
-            
             $("#totalventa").val(total);
-            console.log(Number("total"+total));
+            console.log("total"+Number(total));
+
+            var ganancia=(Number(preciototal[cont])-(precio*cantidad));
+            $("#ganancia").val(ganancia);
+            console.log("ganancia"+ganancia);
+
+            gananciatotal=gananciatotal+Number(ganancia);
+            //$("#gananciatotal").val(gananciatotal);
+            console.log("gananciatotal"+Number(gananciatotal));
 
             var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">Supr</button></td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="producto[]" value="'+producto+'">'+producto+'</td><td><input type="hidden" name="stockpresent[]" value="'+stockpresent+'">'+stockpresent+'</td>><td><input type="hidden" name="preciounitario[]" value="'+preciounitario+'">'+preciounitario+'</td><td><input type="hidden" name="preciototal[]" value="'+preciototal[cont]+'">'+preciototal[cont]+'</td></tr>';
             cont++;

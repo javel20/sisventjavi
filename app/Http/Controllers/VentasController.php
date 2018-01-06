@@ -96,7 +96,7 @@ class VentasController extends Controller
                 $venta->fechaventa = $request->fechaventa;
                 $venta->codigo = $request->codigo;
                 $venta->user_id = \Auth::user()->id;
-                //dd($request);
+                dd($request);
                 $venta->save();
                 
                 $cantidad = $request->cantidad;
@@ -105,7 +105,7 @@ class VentasController extends Controller
                 $preciototal = $request->preciototal;
                 //$venta_id = $request->codigo;
                 $stockpresent_id = $request->stockpresent;
-
+                $ganancia = $request->ganancia;
                 $insertedId= $venta->id;
                 //dd($insertedId);
                 
@@ -120,6 +120,7 @@ class VentasController extends Controller
                     $detalle_venta->preciounitario = $preciounitario[$cont];
                     $detalle_venta->preciototal = $preciototal[$cont];
                     $detalle_venta->venta_id = $insertedId;
+                    $detalle_venta->ganancia = $ganancia[$cont];
                     $detalle_venta->stockpresent_id = $stockpresent_id[$cont];
                     //dd($fechaven[$cont]);
                     //dd($stockpresent_id[$cont]);
