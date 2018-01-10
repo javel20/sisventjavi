@@ -16,51 +16,45 @@
         @endif
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('codigo','Codigo') !!}
-            {!! Form::text('codigo',$compra->codigo,['class' => 'form-control','placeholder'=>'Codigo de la compra','maxlength'=>'12', 'required']) !!}
+            {!! Form::text('codigo',$compra->codigo,['class' => 'form-control','readonly'=>'readonly','placeholder'=>'Codigo de la compra','maxlength'=>'12', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('fechacompra','Fecha') !!}
             {!! Form::text('fechacompra',$compra->fechacompra,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('totalcompra','Total compra') !!}
             {!! Form::text('totalcompra',$compra->totalcompra,['class' => 'form-control','placeholder'=>'apellido materno','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
-        
-                {!! Form::label('estado','Estado') !!}
-                {!! Form::select('estado',['0'=>'Seleccione una opción','activo'=>'activo','inactivo'=>'inactivo'],$compra->estado,['class' => 'form-control select-tag', 'required']) !!}
-                
-        </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('descripcion','Descripcion') !!}
             {!! Form::text('descripcion',$compra->descripcion,['class' => 'form-control','placeholder'=>'Descripcion','maxlength'=>'250']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('proveedor','Empresa proveedora') !!}
-            {!! Form::select('proveedor',$proveedors,$compra->proveedor->nombre_empresa ,['class' => 'form-control select-tag', 'required']) !!}
+            {!! Form::select('proveedor',$proveedors,$compra->proveedor->id ,['class' => 'form-control select-tag', 'required']) !!}
             
         </div>
 
 
        
-        <div class="form-group">
+        <div class="form-group col-md-12">
         
             {!! Form::submit('Editar', ['class' => 'btn btn-primary']) !!}
         

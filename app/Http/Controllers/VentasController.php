@@ -172,7 +172,22 @@ class VentasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $venta = Venta::find($id);
+
+        $clientes = Cliente::all()->pluck('nombre','id');
+        $stockpresents = StockPresent::all()->pluck('nombre','id');
+        $productos = Producto::all()->pluck('nombre','id');
+        
+        //$prods = StockPresent::all();
+        //dd($stockpresents[0]->stockreal);
+        //dd($stockpresents);
+        return view('admin.venta.edit')->with([
+            'venta' => $venta,
+            'clientes' =>$clientes,
+            'stockpresents' =>$stockpresents,
+            'productos' =>$productos,
+            //'prods' =>$prods,
+            ]);
     }
 
     /**
@@ -184,7 +199,30 @@ class VentasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'codigo' => 'required',
+            'fechaventa' => 'required',
+            'totalventa' => 'required',
+            'descripcion' => 'max:250',
+            'cliente' => 'required',
+            //'producto' => 'required',
+        
+        ]);
+        //dd($stockpresent);
+
+        $venta = Venta::find($id);
+        $venta->fill($request->all());
+        $venta->cliente_id = $request->cliente;
+        $venta->fechaventa = $request->fechaventa;
+        $venta->codigo = $request->codigo;
+        $venta->user_id = \Auth::user()->id;
+        //dd($request);
+        
+        if($venta->update()){
+            return redirect("admin/ventas");
+        }else{
+            return view("ventas.edit",["venta" => $venta]);
+        }
     }
 
     /**

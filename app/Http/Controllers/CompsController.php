@@ -201,7 +201,7 @@ class CompsController extends Controller
             'descripcion' => 'max:250',
             'proveedor' => 'required',
             //'producto' => 'required',
-            'estado' => 'required',
+            //'estado' => 'required',
             
         ]);
         //dd($request->all());
