@@ -24,7 +24,7 @@ class VentasController extends Controller
      */
     public function index(Request $request)
     {
-        $ventas = Venta::Search($request)->paginate(10);
+        $ventas = Venta::Search($request)->where('estado','=','Vendido')->paginate(10);
         $ventas->each(function($ventas){
             $ventas->user;
             $ventas->cliente;
@@ -96,7 +96,7 @@ class VentasController extends Controller
                 $venta->fechaventa = $request->fechaventa;
                 $venta->codigo = $request->codigo;
                 $venta->user_id = \Auth::user()->id;
-                dd($request);
+                //dd($request);
                 $venta->save();
                 
                 $cantidad = $request->cantidad;
@@ -105,7 +105,7 @@ class VentasController extends Controller
                 $preciototal = $request->preciototal;
                 //$venta_id = $request->codigo;
                 $stockpresent_id = $request->stockpresent;
-                $ganancia = $request->ganancia;
+                //$ganancia = $request->ganancia;
                 $insertedId= $venta->id;
                 //dd($insertedId);
                 
@@ -120,7 +120,7 @@ class VentasController extends Controller
                     $detalle_venta->preciounitario = $preciounitario[$cont];
                     $detalle_venta->preciototal = $preciototal[$cont];
                     $detalle_venta->venta_id = $insertedId;
-                    $detalle_venta->ganancia = $ganancia[$cont];
+                    //$detalle_venta->ganancia = $ganancia[$cont];
                     $detalle_venta->stockpresent_id = $stockpresent_id[$cont];
                     //dd($fechaven[$cont]);
                     //dd($stockpresent_id[$cont]);
@@ -193,8 +193,63 @@ class VentasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request, $id)
     {
-        //
+         try{
+            DB::beginTransaction();
+ 
+            $venta= Venta::find($id);
+            $venta->estado = "Eliminado";
+            $venta->update();
+
+            //$detalle_venta = $venta->detalleventa()->where('venta_id','=',$id)->get();
+            //dd($detalle_venta->pluck('cantidad','id'));
+            $detalle_venta2 = $venta->detalleventa()->where('venta_id','=',$id)->get();
+            $detalleventa = $detalle_venta2->pluck('cantidad','stockpresent_id')->all();
+            //dd($detalle_venta2);
+                foreach($detalle_venta2 as $dv){
+                    //dd($dv);
+                    //var_dump($dv->id);
+                    //var_dump($dv->estado);
+                    $dv->estado= "Eliminado";
+                    $dv->update();
+                    $st_id=$dv->stockpresent_id;
+
+                    //dd($dv);
+                    $cont=0;
+                }
+                    foreach($detalleventa as $dv2 => $value){
+                        //var_dump($dv2);
+                        //dd($dv2);
+                        $cantidad[$cont]=$detalleventa[$dv2];
+                        //dd($cantidad[$cont]);
+
+                        $stockpresent = Stockpresent::find($dv2);
+                       // $detalle_venta->cantidad = $cantidad[$cont];
+                        //dd($stockpresent);
+                        
+                        $postst=$stockpresent->stockreal;
+                        //dd($cantidad);
+                        $stockpresent->stockreal = $postst+$cantidad[$cont];
+                        //dd($stockpresent->stockreal);
+
+                        $stockpresent->update();
+                        
+                        $cont=$cont+1;
+                    
+                      //  }
+                }
+                //dd($dv);
+
+            
+
+             DB::commit();
+        }catch(\Exception $e){
+            
+            DB::rollBack();
+    
+        } 
+
+        return redirect('/admin/ventas');
     }
 }

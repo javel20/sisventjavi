@@ -37,6 +37,7 @@ class CreateComprasTables extends Migration
                 $table->string('fechavenc',10);
                 $table->double('costounitario',8,2);
                 $table->double('costototal',8,2);
+                $table->string('estado')->default('Comprado');
                 $table->timestamps();
 
                 //$table->bigInteger('comp_codigo')->unsigned();

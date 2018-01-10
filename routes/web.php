@@ -55,6 +55,7 @@ Route::prefix('admin')->group(function () {
 
     Route::group(['middleware' => ['accesomenu:4']], function () {
         Route::resource('compras','CompsController');
+        Route::POST('compras/{id}','CompsController@delete')->name('compras.delete');
     });
 
     Route::group(['middleware' => ['accesomenu:2']], function () {
@@ -72,6 +73,7 @@ Route::prefix('admin')->group(function () {
 
     Route::group(['middleware' => ['accesomenu:5']], function () {
         Route::resource('ventas','VentasController');
+        Route::POST('ventas/{id}','VentasController@delete')->name('ventas.delete');
     });
     
 });

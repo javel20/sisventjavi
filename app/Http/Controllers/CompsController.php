@@ -25,7 +25,7 @@ class CompsController extends Controller
      */
     public function index(Request $request)
     {
-        $compras = Comp::Search($request)->paginate(10);
+        $compras = Comp::Search($request)->where('estado','=','Comprado')->paginate(10);
         $compras->each(function($compras){
             $compras->user;
             $compras->proveedor;
@@ -223,11 +223,63 @@ class CompsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request, $id)
     {
-        $compra= Comp::find($id);  
-        $compra->delete();
-        //compra::Destroy($id)
+         try{
+            DB::beginTransaction();
+ 
+            $comp= Comp::find($id);
+            $comp->estado = "Eliminado";
+            $comp->update();
+
+            //$detalle_comp = $comp->detallecomp()->where('comp_id','=',$id)->get();
+            //dd($detalle_comp->pluck('cantidad','id'));
+            $detalle_comp2 = $comp->detallecomp()->where('comp_id','=',$id)->get();
+            $detallecomp = $detalle_comp2->pluck('cantidad','stockpresent_id')->all();
+            //dd($detallecomp);
+                foreach($detalle_comp2 as $dc){
+                    $dc;
+                    //var_dump($dc->id);
+                    //var_dump($dc->estado);
+                    $dc->estado= "Eliminado";
+                    $dc->update();
+                    $st_id=$dc->stockpresent_id;
+
+                    $cont=0;
+                }
+                    //dd($detallecomp);
+                    foreach($detallecomp as $dc2 => $value){
+                        //var_dump($dc2);
+                        //dd($dc2);
+                        $cantidad[$cont]=$detallecomp[$dc2];
+                        //dd($cantidad[$cont]);
+
+                        $stockpresent = Stockpresent::find($dc2);
+                       // $detalle_comp->cantidad = $cantidad[$cont];
+                        //dd($stockpresent);
+                        
+                        $postst=$stockpresent->stockreal;
+                        //dd($cantidad);
+                        $stockpresent->stockreal = $postst-$cantidad[$cont];
+                        //dd($stockpresent->stockreal);
+
+                        $stockpresent->update();
+                        
+                        $cont=$cont+1;
+                    
+                      //  }
+                }
+                //dd($dc);
+
+            
+
+             DB::commit();
+        }catch(\Exception $e){
+            
+            DB::rollBack();
+    
+        } 
+
         return redirect('/admin/compras');
     }
 }

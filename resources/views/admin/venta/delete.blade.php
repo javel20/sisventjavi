@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['ventas.destroy',$venta], 'method' => 'DELETE', 'class' => 'inline-block' ]) !!}
+{!! Form::open(['route' => ['ventas.delete',$venta], 'method' => 'POST', 'class' => 'inline-block' ]) !!}
 
     <button type="submit" class="btn btn-danger" value="Eliminar" onclick="return confirm('¿Está seguro que desea eliminar?')">Eliminar</button>
 

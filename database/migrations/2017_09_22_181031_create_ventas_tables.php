@@ -38,6 +38,8 @@ class CreateVentasTables extends Migration
                 
                 $table->double('preciounitario',8,2);
                 $table->double('preciototal',8,2);
+                $table->string('estado')->default('Vendido');
+                
                 $table->timestamps();
 
                 //$table->bigInteger('venta_codigo')->unsigned();
