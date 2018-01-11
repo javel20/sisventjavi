@@ -38,6 +38,7 @@
                 
                 <td>
                     <div style="display:inline">
+                        <a href="{{ route('detalleventas.detalleventa',$venta->id)}}" class="btn btn-primary">Detalles</a>
                         <a href="{{ route('ventas.edit',$venta->id)}}" class="btn btn-danger">Editar</a>
                         @include('admin.venta.delete',['venta' => $venta])
                     </div>

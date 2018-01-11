@@ -26,10 +26,11 @@ class CompsController extends Controller
     public function index(Request $request)
     {
         $compras = Comp::Search($request)->where('estado','=','Comprado')->paginate(10);
+        //dd($compras);
         $compras->each(function($compras){
             $compras->user;
             $compras->proveedor;
-            //$compras->detallecomp;
+            $compras->detallecomp;
         });
         /*$detallecomp = DetalleComp::all();
         $detallecomp->each(function($detallecomp){
@@ -281,5 +282,13 @@ class CompsController extends Controller
         } 
 
         return redirect('/admin/compras');
+    }
+
+    public function detallecompra($id){
+
+        $detalle_compras = DetalleComp::where('comp_id','=',$id)->get();
+        //dd($detalle_compras);
+        return view("admin.compra.detallecompra.index",["detalle_compras" => $detalle_compras]);
+
     }
 }

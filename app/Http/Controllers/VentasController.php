@@ -290,4 +290,12 @@ class VentasController extends Controller
 
         return redirect('/admin/ventas');
     }
+
+    public function detalleventa($id){
+
+        $detalle_ventas = DetalleVenta::where('venta_id','=',$id)->get();
+        //dd($detalle_ventas);
+        return view("admin.venta.detalleventa.index",["detalle_ventas" => $detalle_ventas]);
+
+    }
 }
