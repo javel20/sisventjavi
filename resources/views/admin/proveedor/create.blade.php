@@ -3,7 +3,7 @@
 
 {!! Form::open(['route' => ['proveedor.store'], 'method' => 'POST']) !!}
 
-    <h3>Crear cliente</h3>
+    <h3>Crear proveedor</h3>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -15,7 +15,7 @@
         @endif
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('ruc','RUC') !!}
             {!! Form::text('RUC',null,['class' => 'form-control','placeholder'=>'Numero de RUC','maxlength'=>'12', 'required']) !!}
@@ -23,35 +23,35 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('nombre','Nombre Empresa') !!}
             {!! Form::text('nombreempresa',null,['class' => 'form-control','placeholder'=>'Nombre del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('direccion','Direccion') !!}
             {!! Form::text('direccion',null,['class' => 'form-control','placeholder'=>'Direccion','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('nombrecontacto','Nombre Contacto') !!}
             {!! Form::text('nombrecontacto',null,['class' => 'form-control','placeholder'=>'Nombre del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('apellidopat','Apellido Paterno') !!}
             {!! Form::text('apellidopat',null,['class' => 'form-control','placeholder'=>'Apellido paterno del cliente','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('apellidomat','Apellido Materno') !!}
             {!! Form::text('apellidomat',null,['class' => 'form-control','placeholder'=>'Apellido materno del cliente','maxlength'=>'80', 'required']) !!}
@@ -59,28 +59,28 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-3">
         
             {!! Form::label('celular','Celular') !!}
             {!! Form::text('celularcont',null,['class' => 'form-control','placeholder'=>'Numero de celular','maxlength'=>'9', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-3">
         
                 {!! Form::label('operador','Operador') !!}
                 {!! Form::select('operador',['0'=>'Seleccione una opción','Movistar'=>'Movistar','Claro'=>'Claro','Bitel'=>'Bitel','Entel'=>'Entel'],null,['class' => 'form-control select-tag', 'required']) !!}
                 
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('email','Email') !!}
             {!! Form::text('email',null,['class' => 'form-control','placeholder'=>'Ejm:asd@asd.com','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('descripcion','Descripcion') !!}
             {!! Form::text('descripcion',null,['class' => 'form-control','placeholder'=>'Descripcion','maxlength'=>'250']) !!}
@@ -89,7 +89,7 @@
 
        
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         

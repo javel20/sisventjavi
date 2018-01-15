@@ -11,6 +11,6 @@ class LocalTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('locals')->insert(['nombre' =>'almacen','direccion' =>'b.leguia','telefono' =>'2867543','estado'=>'activo']);
+        DB::table('locals')->insert(['nombre' =>'almacen','direccion' =>'b.leguia','telefono' =>'2867543','estado'=>'Activo']);
     }
 }

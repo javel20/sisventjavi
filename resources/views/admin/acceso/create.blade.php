@@ -15,7 +15,7 @@
         @endif
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('nombre','Nombre') !!}
             {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre de la acceso','maxlength'=>'80', 'required']) !!}
@@ -24,7 +24,7 @@
 
        
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         

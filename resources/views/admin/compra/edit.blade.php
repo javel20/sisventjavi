@@ -26,7 +26,7 @@
         <div class="form-group col-md-6">
         
             {!! Form::label('fechacompra','Fecha') !!}
-            {!! Form::text('fechacompra',$compra->fechacompra,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
+            {!! Form::date('fechacompra',$compra->fechacompra,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
             
         </div>
 

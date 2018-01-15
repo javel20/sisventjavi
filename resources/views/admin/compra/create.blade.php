@@ -27,7 +27,7 @@
         <div class="form-group col-md-6">
         
             {!! Form::label('fechacompra','Fecha') !!}
-            {!! Form::text('fechacompra',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
+            {!! Form::date('fechacompra',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
             
         </div>
 
@@ -87,7 +87,7 @@
                         <div class="form-group col-md-6">
         
                             {!! Form::label('fechaven','Fecha Vencimiento') !!}
-                            {!! Form::text('fechaven',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10']) !!}
+                            {!! Form::date('fechaven',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10']) !!}
                             
                         </div>
 
@@ -149,6 +149,7 @@
 
         <div class="form-group col-md-12" id="guardar">
             <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+            <input type="hidden" id="compra" name="compra" value={{Request::root()}} >
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         
         </div>
@@ -185,11 +186,13 @@
         })
 
 
+        const host=document.getElementById("compra").value;
+        console.log(host);
 
         $("#producto").change(function(e){
             //console.log(e.target.value);
             $.ajax({
-                url:"http://localhost/sisventjavi/public/admin/ajaxstockpresent", 
+                url:host+"/admin/ajaxstockpresent", 
                 data : {
                     'IdProducto' : e.target.value
                 },

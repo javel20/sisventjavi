@@ -27,7 +27,7 @@
         <div class="form-group col-md-6">
         
             {!! Form::label('fechaventa','Fecha') !!}
-            {!! Form::text('fechaventa',$venta->fechaventa,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
+            {!! Form::date('fechaventa',$venta->fechaventa,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
             
         </div>
 

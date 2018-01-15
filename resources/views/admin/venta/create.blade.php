@@ -27,7 +27,7 @@
         <div class="form-group col-md-6">
         
             {!! Form::label('fechaventa','Fecha') !!}
-            {!! Form::text('fechaventa',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
+            {!! Form::date('fechaventa',null,['class' => 'form-control','placeholder'=>'aaaa/mm/dd','maxlength'=>'10', 'required']) !!}
             
         </div>
 
@@ -144,6 +144,7 @@
 
         <div class="form-group col-md-12" id="guardar">
             <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+            <input type="hidden" id="venta" name="venta" value={{Request::root()}} >
             <input type="hidden" value="" name="gananciatotal" id="gananciatotal" /> 
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         
@@ -188,12 +189,13 @@
 
         })
 
-
+        const host=document.getElementById("venta").value;
+        console.log(host);
 
         $("#producto").change(function(e){
             //console.log(e.target.value);
             $.ajax({
-                url:"http://localhost/sisventjavi/public/admin/ajaxstockpresent", 
+                url:host+"/admin/ajaxstockpresent", 
                 data : {
                     'IdProducto' : e.target.value
                 },

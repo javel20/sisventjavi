@@ -15,14 +15,14 @@
         @endif
 
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('nombre','Nombre') !!}
             {!! Form::text('nombre',null,['class' => 'form-control','placeholder'=>'Nombre de la categoria','maxlength'=>'80', 'required']) !!}
             
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
         
             {!! Form::label('descripcion','Descripcion') !!}
             {!! Form::text('descripcion',null,['class' => 'form-control','placeholder'=>'Nombre de la direccion','maxlength'=>'250', 'required']) !!}
@@ -32,7 +32,7 @@
 
        
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
         
             {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
         

@@ -11,6 +11,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(['email' =>'javier@gmail.com','password' =>bcrypt('javier'),'nombre' =>'javier','apellidopat'=>'elias','apellidomat'=>'balladares','DNI'=>'45615420','direccion'=>'tacna','celular'=>'957803813','operador'=>'movistar','estado'=>'Activo','descripcion'=>'admi-dueño','tipo_trabajador_id'=>'1','local_id'=>'1']);
+        DB::table('users')->insert(['email' =>'javier@gmail.com','password' =>bcrypt('javier'),'nombre' =>'javier','apellidopat'=>'elias','apellidomat'=>'balladares','DNI'=>'45615420','direccion'=>'tacna','celular'=>'957803813','operador'=>'Movistar','estado'=>'Activo','descripcion'=>'admi-dueño','tipo_trabajador_id'=>'1','local_id'=>'1']);
     }
 }
